@@ -1,0 +1,227 @@
+<html lang="en" >
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+  <style type="text/css">
+  html,body, md-sidenav, #content{
+    background-color: #f1f1f1;
+    color: #212121;
+  }
+  a{
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  md-whiteframe {
+    background: #fff;
+    margin:8px;
+
+  }
+  md-sidenav a{
+    text-transform: capitalize;
+    font-size: 0.9em;
+    color: #949393;
+  }
+  md-sidenav md-icon{
+    margin-right: 0.4em;
+  }
+  
+</style>
+
+</head>
+<body ng-app="BlankApp" layout="column" ng-cloak>
+  <md-toolbar>
+    <h6>Hookup App</h6>
+  </md-toolbar>
+  <div layout="row">
+
+    <md-sidenav md-is-locked-open="true" layout-align="start start" layout="row" >
+      <div flex></div>
+      <div flex="80"> 
+        <md-list>
+          <md-list-item class="md-3-line" layout-align="center center">
+                <img ng-src="../pstatic/img/pic1.png" class="md-avatar" alt="Profile Banner" style="height:80px; width:auto;">
+          </md-list-item>
+          <md-list-item md-list-item-text>
+                Damiola Boiyelove
+          </md-list-item>
+          <md-list-item>
+            <a href="#"> <md-icon md-font-set="md">blur_circular</md-icon> Discovery</a>
+          </md-list-item>
+          <md-list-item>
+            <a href="#"><md-icon md-font-set="md">mail</md-icon> Messages</a>
+          </md-list-item>
+          <md-list-item>
+            <a href="#"><md-icon md-font-set="md">favorite</md-icon> Likes</a>
+          </md-list-item>
+          <md-list-item>
+            <a href="#"><md-icon md-font-set="md">visibility</md-icon> Visitors</a>
+          </md-list-item>
+          <md-list-item>
+            <a href="#"><md-icon md-font-set="md">account_circle</md-icon> Contacts</a>
+          </md-list-item>
+          <md-list-item>
+            <a href="#"><md-icon md-font-set="md">grade</md-icon> TOP-users</a>
+          </md-list-item>
+          <md-list-item>
+            <a href="#"><md-icon md-font-set="md">home</md-icon> Home</a>
+          </md-list-item>
+          <md-list-item>
+            <a href="#"><md-icon md-font-set="md">perm_identity</md-icon> Profile</a>
+          </md-list-item>
+
+          <md-list-item>
+            <a href="#"><md-icon md-font-set="md">settings</md-icon> Settings</a>
+          </md-list-item>
+
+          <md-list-item>
+            <a href="#"><md-icon md-font-set="md">settings_power</md-icon> Logout</a>
+          </md-list-item>
+        </md-list>
+      </div>
+    </md-sidenav>
+
+    <md-content id="content" class="md-padding" flex="70" layout="column" layoutalign="center center">
+      
+      <div flex style="background-color:#41464C;" layout="row" layout-alignt="canter-canter">
+        <a ng-href="#" flex layout="row">
+        <p style="color:#fff;" flex="10">Benson<br>20 years, Benin</p>
+        <img ng-src="../pstatic/img/image-01.png" alt="Profile" style="width:auto; align-self:center;">
+      </a>
+      </div>
+
+      <div layout="column" style="background-color: #fff;">
+       <h5>Recently Liked</h5>
+       <md-content layout="row" class="md-padding" layout-margin="5"  style="background-color: #fff;">
+        <a ng-href="#" ng-model="profileImage">
+           <md-tooltip md-direction="bottom">
+            Insert Drive
+          </md-tooltip>
+          <img ng-src="../pstatic/img/pic1.png" alt="Profile" style="height:80px; width:auto;border-radius: 50%;">
+        </a>
+                <a ng-href="#" ng-model="profileImage">
+           <md-tooltip md-direction="bottom">
+            Insert Drive
+          </md-tooltip>
+          <img ng-src="../pstatic/img/pic1.png" alt="Profile" style="height:80px; width:auto;border-radius: 50%;">
+        </a>
+                <a ng-href="#" ng-model="profileImage">
+           <md-tooltip md-direction="bottom">
+            Insert Drive
+          </md-tooltip>
+          <img ng-src="../pstatic/img/pic1.png" alt="Profile" style="height:80px; width:auto;border-radius: 50%;">
+        </a>
+                <a ng-href="#" ng-model="profileImage">
+           <md-tooltip md-direction="bottom">
+            Insert Drive
+          </md-tooltip>
+          <img ng-src="../pstatic/img/pic1.png" alt="Profile" style="height:80px; width:auto;border-radius: 50%;">
+        </a>
+                <a ng-href="#" ng-model="profileImage">
+           <md-tooltip md-direction="bottom">
+            Insert Drive
+          </md-tooltip>
+          <img ng-src="../pstatic/img/pic1.png" alt="Profile" style="height:80px; width:auto;border-radius: 50%;">
+        </a>
+                <a ng-href="#" ng-model="profileImage">
+           <md-tooltip md-direction="bottom">
+            Insert Drive
+          </md-tooltip>
+          <img ng-src="../pstatic/img/pic1.png" alt="Profile" style="height:80px; width:auto;border-radius: 50%;">
+        </a>
+                <a ng-href="#" ng-model="profileImage">
+           <md-tooltip md-direction="bottom">
+            Insert Drive
+          </md-tooltip>
+          <img ng-src="../pstatic/img/pic1.png" alt="Profile" style="height:80px; width:auto;border-radius: 50%;">
+        </a>
+                <a ng-href="#" ng-model="profileImage">
+           <md-tooltip md-direction="bottom">
+            Insert Drive
+          </md-tooltip>
+          <img ng-src="../pstatic/img/pic1.png" alt="Profile" style="height:80px; width:auto;border-radius: 50%;">
+        </a>
+                <a ng-href="#" ng-model="profileImage">
+           <md-tooltip md-direction="bottom">
+            Insert Drive
+          </md-tooltip>
+          <img ng-src="../pstatic/img/pic1.png" alt="Profile" style="height:80px; width:auto;border-radius: 50%;">
+        </a>
+                <a ng-href="#" ng-model="profileImage">
+           <md-tooltip md-direction="bottom">
+            Insert Drive
+          </md-tooltip>
+          <img ng-src="../pstatic/img/pic1.png" alt="Profile" style="height:80px; width:auto;border-radius: 50%;">
+        </a>
+                <a ng-href="#" ng-model="profileImage">
+           <md-tooltip md-direction="bottom">
+            Insert Drive
+          </md-tooltip>
+          <img ng-src="../pstatic/img/pic1.png" alt="Profile" style="height:80px; width:auto;border-radius: 50%;">
+        </a>
+                <a ng-href="#" ng-model="profileImage">
+           <md-tooltip md-direction="bottom">
+            Insert Drive
+          </md-tooltip>
+          <img ng-src="../pstatic/img/pic1.png" alt="Profile" style="height:80px; width:auto;border-radius: 50%;">
+        </a>
+                <a ng-href="#" ng-model="profileImage">
+           <md-tooltip md-direction="bottom">
+            Insert Drive
+          </md-tooltip>
+          <img ng-src="../pstatic/img/pic1.png" alt="Profile" style="height:80px; width:auto;border-radius: 50%;">
+        </a>
+                <a ng-href="#" ng-model="profileImage">
+           <md-tooltip md-direction="bottom">
+            Insert Drive
+          </md-tooltip>
+          <img ng-src="../pstatic/img/pic1.png" alt="Profile" style="height:80px; width:auto;border-radius: 50%;">
+        </a>
+      </md-content>
+      </div>
+    </md-content>
+
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
+    <!-- Your application bootstrap  -->
+    <script type="text/javascript">    
+    /**
+     * You must include the dependency on 'ngMaterial' 
+     */
+
+
+     var app = angular.module('BlankApp', ['ngMaterial', 'ngMessages']);
+     app.controller('MyController', function($scope, $mdSidenav) {
+      $scope.openLeftMenu = function() {
+        $mdSidenav('left').toggle();
+      };
+      $scope.currentNavItem = 'page1';
+     });
+     app.config(function($mdIconProvider) {
+      $mdIconProvider.fontSet('md', 'material-icons');
+     });
+     app.run(function(){
+      console.log("My App is Ready");
+     });
+
+
+
+
+ </script>
+</body>
+</html>
+
+<!--
+Copyright 2016-2018 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be found in the LICENSE file at https://material.angularjs.org/latest/license.
+-->

@@ -1,0 +1,493 @@
+<html lang="en" >
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Angular Material style sheet -->
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+	<style type="text/css">
+	html,body, md-sidenav, #content{
+		background-color: #f1f1f1;
+		color: #212121;
+	}
+	a{
+		text-decoration: none;
+		text-transform: uppercase;
+	}
+	md-whiteframe {
+		background: #fff;
+		margin:8px;
+
+	}
+	md-sidenav a{
+		text-transform: capitalize;
+		font-size: 0.9em;
+		color: #949393;
+	}
+	md-sidenav md-icon{
+		margin-right: 0.4em;
+	}
+	
+</style>
+
+</head>
+<body ng-app="BlankApp" layout="column" ng-cloak>
+	<md-toolbar>
+		<h6>Hookup App</h6>
+	</md-toolbar>
+	<div layout="row">
+
+		<md-sidenav md-is-locked-open="true" layout-align="start start" layout="row" >
+			<div flex></div>
+			<div flex="80"> 
+				<md-list>
+					<md-list-item class="md-3-line" layout-align="center center">
+								<img ng-src="../pstatic/img/pic1.png" class="md-avatar" alt="Profile Banner" style="height:80px; width:auto;">
+					</md-list-item>
+					<md-list-item md-list-item-text>
+								Damiola Boiyelove
+					</md-list-item>
+					<md-list-item>
+						<a href="#"> <md-icon md-font-set="md">blur_circular</md-icon> Discovery</a>
+					</md-list-item>
+					<md-list-item>
+						<a href="#"><md-icon md-font-set="md">mail</md-icon> Messages</a>
+					</md-list-item>
+					<md-list-item>
+						<a href="#"><md-icon md-font-set="md">favorite</md-icon> Likes</a>
+					</md-list-item>
+					<md-list-item>
+						<a href="#"><md-icon md-font-set="md">visibility</md-icon> Visitors</a>
+					</md-list-item>
+					<md-list-item>
+						<a href="#"><md-icon md-font-set="md">account_circle</md-icon> Contacts</a>
+					</md-list-item>
+					<md-list-item>
+						<a href="#"><md-icon md-font-set="md">grade</md-icon> TOP-users</a>
+					</md-list-item>
+					<md-list-item>
+						<a href="#"><md-icon md-font-set="md">home</md-icon> Home</a>
+					</md-list-item>
+					<md-list-item>
+						<a href="#"><md-icon md-font-set="md">perm_identity</md-icon> Profile</a>
+					</md-list-item>
+
+					<md-list-item>
+						<a href="#"><md-icon md-font-set="md">settings</md-icon> Settings</a>
+					</md-list-item>
+
+					<md-list-item>
+						<a href="#"><md-icon md-font-set="md">settings_power</md-icon> Logout</a>
+					</md-list-item>
+				</md-list>
+			</div>
+		</md-sidenav>
+
+		<md-content id="content" class="md-padding" flex="80">
+			<!-- div width="70" -->
+			<md-card>
+				<img ng-src="../pstatic/img/bg.png" class="md-card-image" alt="Profile Banner" style="max-height:300px;">
+				<md-card-content layout="column" style="padding-bottom:0px;">
+					<div layout="row">
+						<md-list>
+							<md-list-item class="md-3-line" layout-align="center center">
+								<img ng-src="../pstatic/img/pic1.png" class="md-avatar" alt="Profile Banner" style="height:80px; width:auto;">
+								<div class="md-list-item-text" layout="column">
+									<h2 style="margin-bottom:2px;">Damiola Boiyelove   <md-icon md-font-set="md">create</md-icon> </h2>
+									<h4>31 years, Lagos</h4>
+									<p>Last seen 4 days ago</p>
+								</div>
+							</md-list-item>
+						</md-list>
+						<div flex></div>
+						<md-list layout="row">
+							<div layout="column" class="md-padding">
+								<md-icon font-set="md">people</md-icon>
+								<h6 style="margin-top:2px;">VISITORS</h6>
+							</div>
+							<div layout="column" class="md-padding">
+								<md-icon font-set="md">favorite</md-icon>
+								<h6 style="margin-top:2px;">LIKED ME</h6>
+							</div>
+							<div layout="column" class="md-padding">
+								<md-icon font-set="md">thumb_up_alt</md-icon>
+								<h6 style="margin-top:2px;">LIKE</h6>
+							</div>
+						</md-list>
+					</div>
+					<br>
+					<br>
+
+					<div class="container">
+						<md-nav-bar
+						md-no-ink-bar="disableInkBar"
+						md-selected-nav-item="currentNavItem"
+						nav-bar-aria-label="navigation links">
+						<md-nav-item md-nav-click="goto('page1')" name="page1">
+							Overview
+						</md-nav-item>
+						<md-nav-item md-nav-click="goto('page2')" name="page2">
+							Photos
+						</md-nav-item>
+						<md-nav-item md-nav-click="goto('page3')" name="page3">
+							Interest
+						</md-nav-item>
+						<md-nav-item md-nav-click="goto('page4')" name="page4">
+							Notification
+						</md-nav-item>
+						<md-nav-item md-nav-click="goto('page5')" name="page5">
+							Notification
+						</md-nav-item>
+						      <!-- these require actual routing with ui-router or ng-route, so they
+						      won't work in the demo
+						      <md-nav-item md-nav-href="#page4" name="page5">Page Four</md-nav-item>
+						      <md-nav-item md-nav-sref="app.page5" name="page4">Page Five</md-nav-item>
+						      You can also add options for the <code>ui-sref-opts</code> attribute.
+						      <md-nav-item md-nav-sref="page6" sref-opts="{reload:true, notify:true}">
+						        Page Six
+						      </md-nav-item>
+						  -->
+						</md-nav-bar>
+					</div>
+				</md-card-content>
+
+			</md-card>
+			<div layout="column" flex="50" style="max-height:none!important;">
+				<br>
+				<div layout="row">
+					<md-button class="md-raised md-primary" style="padding-left:2%; padding-right:2%;">Connect to facebook</md-button>
+					<md-button class="md-raised md-accent" style="padding-left:2%; padding-right:2%;">Connect to Google+</md-button>
+				</div>
+				<br>
+				<md-whiteframe class = "md-whiteframe-1dp md-padding" layout="column" layout-wrap>
+					<p class="md-body-2">Basic Information</p>
+					<md-divider></md-divider>
+					<div layout="column">
+						<div layout="row" class="md-padding">
+							<div flex>Age</div>
+							<div flex>52 years</div>
+						</div>
+						<div layout="row" class="md-padding">
+							<div flex>Language</div>
+							<div flex>English</div>
+						</div>
+						<div layout="row" class="md-padding">
+							<div flex>Location</div>
+							<div flex>Lagos</div>
+						</div>
+
+					</div>
+				</md-whiteframe>
+				<md-whiteframe class = "md-whiteframe-1dp md-padding" layout="column">
+					<p class="md-body-2">Photos</p>
+					<md-divider></md-divider>
+					<div class="container md-padding" layout="row" layout-wrap>
+						<img ng-src="../pstatic/img/pic1.png" style="height:20%; width:auto;">
+						<img ng-src="../pstatic/img/pic1.png" style="height:20%; width:auto;">
+						<img ng-src="../pstatic/img/pic1.png" style="height:20%; width:auto;">
+						<img ng-src="../pstatic/img/pic1.png" style="height:20%; width:auto;">
+						<img ng-src="../pstatic/img/pic1.png" style="height:20%; width:auto;">
+					</div>
+				</md-whiteframe>
+				<md-whiteframe class = "md-whiteframe-1dp md-padding" layout="column">
+					<p class="md-body-2">Basic Information</p>
+					<md-divider></md-divider>
+					<div layout="column">
+						<div layout="row" class="md-padding">
+							<div flex>Age</div>
+							<div flex>52 years</div>
+						</div>
+						<div layout="row" class="md-padding">
+							<div flex>Language</div>
+							<div flex>English</div>
+						</div>
+						<div layout="row" class="md-padding">
+							<div flex>Location</div>
+							<div flex>Lagos</div>
+						</div>
+
+					</div>
+				
+				</md-whiteframe>
+				<md-whiteframe class = "md-whiteframe-1dp md-padding" layout="column">
+					<p class="md-body-2">Interests</p>
+					<md-divider></md-divider>
+					<div class="container">
+						<md-chips>
+							<md-chip>Hockey</md-chip>
+							<md-chip>Lacrosse</md-chip>
+							<md-chip>Baseball</md-chip>
+							<md-chip>Baseball</md-chip>
+							<md-chip>Baseball</md-chip>
+							<md-chip>BaHockeseball</md-chip>
+							<md-chip>Baseball</md-chip>
+							<md-chip>BasebalHockeHockel</md-chip>
+							<md-chip>Baseball</md-chip>
+							<md-chip>Baseball</md-chip>
+							<md-chip>BaseHockeHockeball</md-chip>
+							<md-chip>BasebHockeall</md-chip>
+							<md-chip>BaseHockeHockeball</md-chip>
+							<md-chip>Baseball</md-chip>
+							<md-chip>Baseball</md-chip>
+							<md-chip>BHockeaseball</md-chip>
+							<md-chip>Baseball</md-chip>
+							<md-chip>BaHockeseball</md-chip>
+						</md-chips>
+					</div>
+					<br>
+
+				</md-whiteframe>
+				<md-whiteframe class = "md-whiteframe-1dp md-padding" layout="column">
+					<p class="md-body-2">Basic</p>
+					<md-divider></md-divider>
+					<div layout="column">
+						<md-input-container>
+							<label>Ethnicity</label>
+							<md-select name="type" ng-model="project.type" required>
+								<md-option value="app">Black / African descent</md-option>
+								<md-option value="web">Pacific islander</md-option>
+								<md-option value="web">Indian</md-option>
+								<md-option value="web">White / Caucasian</md-option>
+								<md-option value="web">Mixed</md-option>
+								<md-option value="web">Middle eastern</md-option>
+								<md-option value="web">Asian</md-option>
+								<md-option value="web">Other</md-option>
+								<md-option value="web">Native american</md-option>
+								<md-option value="web">Latino/ hispanic</md-option>
+							</md-select>
+						</md-input-container>
+						<md-input-container>
+							<label>Religion</label>
+							<md-select name="type" ng-model="project.type" required>
+								<md-option value="web">Hindu</md-option>
+								<md-option value="web">Buddhist</md-option>
+								<md-option value="web">Agnostic</md-option>
+								<md-option value="web">Spiritual</md-option>
+								<md-option value="web">Orthodox</md-option>
+								<md-option value="web">Catholic</md-option>
+								<md-option value="web">Atheist</md-option>
+								<md-option value="web">Other</md-option>
+								<md-option value="web">Jewish</md-option>
+								<md-option value="web">Protestant</md-option>
+								<md-option value="web">Christian</md-option>
+								<md-option value="web">Muslim</md-option>
+							</md-select>
+						</md-input-container>
+						<md-input-container>
+							<label>Sign</label>
+							<md-select name="type" ng-model="project.type" required>
+								<md-option value="web">Sagittarius</md-option>
+								<md-option value="web">Virgo</md-option>
+								<md-option value="web">Gemini</md-option>
+								<md-option value="web">Pisces</md-option>
+								<md-option value="web">Capricorn</md-option>
+								<md-option value="web">Libra</md-option>
+								<md-option value="web">Cancer</md-option>
+								<md-option value="web">Aries</md-option>
+								<md-option value="web">Scorpio</md-option>
+								<md-option value="web">Leo</md-option>
+								<md-option value="web">Taurus</md-option>
+								<md-option value="web">Aquarius</md-option>
+							</md-select>
+						</md-input-container>
+						<md-input-container>
+							<label>Body type</label>
+							<md-select name="type" ng-model="project.type" required>
+								<md-option value="web">A little extra</md-option>
+								<md-option value="web">Fit</md-option>
+								<md-option value="web">Full-figured</md-option>
+								<md-option value="web">Average</md-option>
+								<md-option value="web">Better not say</md-option>
+								<md-option value="web">Curvy</md-option>
+								<md-option value="web">Overweight</md-option>
+								<md-option value="web">Thin</md-option>
+							</md-select>
+						</md-input-container>
+					</div>
+				</md-whiteframe>
+				<md-whiteframe class = "md-whiteframe-1dp md-padding" layout="column">
+					<p class="md-body-2">Personal Details</p>
+					<md-divider></md-divider>
+					<md-input-container>
+						<label>Children</label>
+						<md-select name="type" ng-model="project.type" required>
+							<md-option value="app">Expecting</md-option>
+							<md-option value="app">Want kids</md-option>
+							<md-option value="app">Have kids</md-option>
+							<md-option value="app">Don't want kids</md-option>
+							<md-option value="app">No kids</md-option>
+							<md-option value="app">Someday</md-option>
+							<md-option value="app">Might want kids</md-option>
+						</md-select>
+					</md-input-container>
+
+					<md-input-container>
+						<label>Pets</label>
+						<md-select name="type" ng-model="project.type" required>
+							<md-option value="app">Other</md-option>
+							<md-option value="app">Hate pets</md-option>
+							<md-option value="app">Dogs</md-option>
+							<md-option value="app">Cats</md-option>
+						</md-select>
+					</md-input-container>
+					<md-input-container>
+						<label>Car</label>
+						<md-select name="type" ng-model="project.type" required>
+							<md-option value="app">I don't have one</md-option>
+							<md-option value="app">I have my own car</md-option>
+						</md-select>
+					</md-input-container>	  
+
+					<md-input-container>
+						<label>Home Ownership</label>
+						<md-select name="type" ng-model="project.type" required>
+							<md-option value="app">Live in a dormitory</md-option>
+							<md-option value="app">Own a house/apartments</md-option>
+							<md-option value="app">Share a flat</md-option>
+							<md-option value="app">Rent a house/apartments</md-option>
+							<md-option value="app">Live with parents</md-option>
+						</md-select>
+					</md-input-container>	 
+
+				</md-whiteframe>
+
+				<md-whiteframe class = "md-whiteframe-1dp md-padding" layout="column">
+					<p class="md-body-2">Professional Details</p>
+					<md-divider></md-divider>
+					<md-input-container>
+						<label>Profession</label>
+						<md-select name="type" ng-model="project.type" required>
+							<md-option value="app">College student</md-option>
+							<md-option value="app">Homemaker</md-option>
+							<md-option value="app">Apprentice</md-option>
+							<md-option value="app">Retired</md-option>
+							<md-option value="app">Employee</md-option>
+							<md-option value="app">Self-employed</md-option>
+							<md-option value="app">Civil servant</md-option>
+							<md-option value="app">Unemployed</md-option>
+						</md-select>
+					</md-input-container> 
+					<md-input-container>
+						<label>Industry</label>
+						<md-select name="type" ng-model="project.type" required>
+							<md-option value="app">Science</md-option>
+							<md-option value="app">Non-profit</md-option>
+							<md-option value="app">Health care</md-option>
+							<md-option value="app">Education</md-option>
+							<md-option value="app">Arts/music/writing</md-option>
+							<md-option value="app">Technology</md-option>
+							<md-option value="app">Sales/marketing</md-option>
+							<md-option value="app">Hospitality</md-option>
+							<md-option value="app">Entertainment/media</md-option>
+							<md-option value="app">Business management</md-option>
+							<md-option value="app">Transportation</md-option>
+							<md-option value="app">IT</md-option>
+							<md-option value="app">Military</md-option>
+							<md-option value="app">Government\politics</md-option>
+							<md-option value="app">Construction</md-option>
+						</md-select>
+					</md-input-container> 
+					<md-input-container>
+						<label>Education</label>
+						<md-select name="type" ng-model="project.type" required>
+							<md-option value="app">College</md-option>
+							<md-option value="app">I'm just very smart</md-option>
+							<md-option value="app">Post grad</md-option>
+							<md-option value="app">Secondary education</md-option>
+							<md-option value="app">Not finished</md-option>
+							<md-option value="app">University</md-option>
+							<md-option value="app">Apprenticeship</md-option>
+							<md-option value="app">Advanced degree</md-option>
+						</md-select>
+					</md-input-container> 
+				</md-whiteframe>
+				<md-whiteframe class = "md-whiteframe-1dp md-padding" layout="column">
+					<p class="md-body-2">Habits</p>
+					<md-divider></md-divider>
+					<md-input-container>
+						<label>Smoking</label>
+						<md-select name="type" ng-model="project.type" required>
+							<md-option value="app">Only with alcohol</md-option>
+							<md-option value="app">Social smoker</md-option>
+							<md-option value="app">Trying to quit</md-option>
+							<md-option value="app">Non-smoker</md-option>
+							<md-option value="app">Quit</md-option>
+							<md-option value="app">Smoker</md-option>
+						</md-select>
+					</md-input-container> 
+					<md-input-container>
+						<label>Drinking</label>
+						<md-select name="type" ng-model="project.type" required>
+							<md-option value="app">Only with alcohol</md-option>
+							<md-option value="app">Social smoker</md-option>
+							<md-option value="app">Trying to quit</md-option>
+							<md-option value="app">Non-smoker</md-option>
+							<md-option value="app">Quit</md-option>
+							<md-option value="app">Smoker</md-option>
+						</md-select>
+					</md-input-container> 
+					<md-input-container>
+						<label>Drugs</label>
+						<md-select name="type" ng-model="project.type" required>
+							<md-option value="app">Sometimes</md-option>
+							<md-option value="app">Socially</md-option>
+							<md-option value="app">Never</md-option>
+							<md-option value="app">Often</md-option>
+						</md-select>
+					</md-input-container> 
+					<md-input-container>
+						<label>Diet</label>
+						<md-select name="type" ng-model="project.type" required>
+							<md-option value="app">Vegan</md-option>
+							<md-option value="app">Kosher</md-option>
+							<md-option value="app">I eat meat</md-option>
+							<md-option value="app">Halal</md-option>
+							<md-option value="app">Vegetarian</md-option>
+						</md-select>
+					</md-input-container> 
+				</md-whiteframe>
+			</div>
+		</md-content>
+
+
+		<!-- Angular Material requires Angular.js Libraries -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+
+		<!-- Angular Material Library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
+		<!-- Your application bootstrap  -->
+		<script type="text/javascript">    
+    /**
+     * You must include the dependency on 'ngMaterial' 
+     */
+
+
+     var app = angular.module('BlankApp', ['ngMaterial', 'ngMessages']);
+     app.controller('MyController', function($scope, $mdSidenav) {
+     	$scope.openLeftMenu = function() {
+     		$mdSidenav('left').toggle();
+     	};
+     	$scope.currentNavItem = 'page1';
+     });
+     app.config(function($mdIconProvider) {
+     	$mdIconProvider.fontSet('md', 'material-icons');
+     });
+     app.run(function(){
+     	console.log("My App is Ready");
+     });
+
+
+
+
+ </script>
+</body>
+</html>
+
+<!--
+Copyright 2016-2018 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be found in the LICENSE file at https://material.angularjs.org/latest/license.
+-->

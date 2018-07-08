@@ -1,0 +1,92 @@
+<html lang="en" >
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+
+
+</head>
+<body ng-app="BlankApp" ng-cloak layout=column>
+<md-toolbar>
+     <h6>Hookup App</h6>
+</md-toolbar>
+<md-content id="content" flex>Content</md-content>
+<div layout="column" layout-align="center center" layout-fill="layout-fill">
+    <div layout="column" class="loginBox md-whiteframe-z1">
+      <md-toolbar>
+        <h2 class="md-toolbar-tools"><span>Login</span></h2>
+      </md-toolbar>
+      <form name="loginForm">
+        <md-content layout="column" class="md-padding">
+          <md-input-container>
+            <label>Username</label>
+            <input required type="text" ng-model="loginModel.username" name="username" />
+            <div ng-messages="loginForm.username.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container>
+            <label>Password</label>
+            <input required type="password" ng-model="loginModel.password" name="password" />
+            <div ng-messages="loginForm.password.$error" role="alert">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <div layout="row" layout-align="center center">
+            <md-button type="submit" class="md-raised md-primary">Login</md-button>
+            <div flex="flex"></div>
+            <md-button href="" md-no-ink>Forgot Password</md-button>
+          </div>
+          <md-divider></md-divider>
+          <md-button href="#" md-no-ink>Sign Up</md-button>
+        </md-content>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+    <!-- Angular Material requires Angular.js Libraries -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
+    <!-- Your application bootstrap  -->
+  <script type="text/javascript">    
+    /**
+     * You must include the dependency on 'ngMaterial' 
+     */
+
+
+   var app = angular.module('BlankApp', ['ngMaterial', 'ngMessages']);
+    app.controller('MyController', function($scope, $mdSidenav) {
+      $scope.openLeftMenu = function() {
+        $mdSidenav('left').toggle();
+      };
+    });
+   app.config(function($mdIconProvider) {
+      $mdIconProvider.fontSet('md', 'material-icons');
+    });
+    app.run(function(){
+      console.log("My App is Ready");
+    });
+
+
+   
+
+  </script>
+</body>
+</html>
+
+<!--
+Copyright 2016-2018 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be found in the LICENSE file at https://material.angularjs.org/latest/license.
+-->

@@ -1,0 +1,198 @@
+<html lang="en" >
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+
+
+</head>
+<body ng-app="BlankApp" ng-cloak layout=column>
+<md-toolbar>
+     <h6>Hookup App</h6>
+</md-toolbar>
+<md-content layout="column" layout-align="center center" layout-fill="layout-fill">
+<md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Login">
+      	<md-content layout="column" class="md-padding" style="text-align:center!important" flex>
+      		<div layout="row">
+      				Connect faster with social networks
+      		</div>
+      		<div layout="row"  layout-aligr="center start">
+      			
+      			<md-list-item>
+      				<a href="#">Facebook</a>
+      			</md-list-item>
+      			<md-list-item>
+      				<a href="#">Google+</a>
+      			</md-list-item>
+      		
+      		</div>
+      	</md-content>
+        <md-content class="md-padding" layout="column" layout-align="center center">
+       <div layout="column" class="md-whiteframe-z1">
+      <form name="loginForm" style="min-width:400px;">
+        <md-content layout="column" class="md-padding">
+          <md-input-container>
+          	<md-icon md-font-set="md">perm_identity</md-icon>
+            <input required type="text" ng-model="loginModel.username" name="username" placeholder="Username" />
+            <div ng-messages="loginForm.username.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container>
+            <md-icon md-font-set="md">lock</md-icon>
+            <input required type="password" ng-model="loginModel.password" name="password" placeholder="Password" />
+            <div ng-messages="loginForm.password.$error" role="alert">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <div layout="column" layout-align="center end">
+            <md-button type="submit" class="md-raised md-primary">Login</md-button>
+            <br>
+          </div>
+          <md-divider></md-divider>
+          <md-button md-no-ink ng-click="showPrompt($event)">Forgot Password</md-button>
+    </md-button>
+        </md-content>
+      </form>
+    </div>
+        </md-content>
+      </md-tab>
+      <md-tab label="Register">
+        <md-content class="md-padding" layout="column" layout-align="center center">
+    <div layout="column" class="md-whiteframe-z1">
+      <form name="registrationForm" layout="column" class="md-padding" style="min-width:400px;">
+          <md-input-container>
+          	<md-icon md-font-set="md">person</md-icon>
+            <input required type="text" ng-model="signUpModel.fullname" name="fullname" placeholder="Name" />
+            <div ng-messages="registrationForm.fullname.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container>
+          	<md-icon md-font-set="md">email</md-icon>
+            <input required type="text" ng-model="signUpModel.email" name="email" placeholder="Email Address"/>
+            <div ng-messages="registrationForm.email.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container>
+          	<md-icon md-font-set="md">lock</md-icon>
+            <input required type="password" ng-model="signUpModel.password" name="password" placeholder="Password" />
+            <div ng-messages="registrationForm.password.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <div layout="row">
+				<md-input-container flex="40">
+                    <md-radio-group name="gender" id="gender" ng-model="obj.gender" ng-required="true" class="">
+                        <md-radio-button name="gender" value="Male"   required> Male</md-radio-button><br>
+            		<md-radio-button name="gender" value="Female" required> Female</md-radio-button>
+                    </md-radio-group>
+                    <div ng-messages="signUpModel.gender.$error">
+                        <div ng-message="required">This is required</div>
+                    </div>
+           </md-input-container>
+
+           <md-input-container flex="60">
+           	<md-icon md-font-set="md">cake</md-icon>
+            <input required type="number" ng-model="signUpModel.age" name="age" placeholder="Age" min="18" max="70"/>
+            <div ng-messages="registrationForm.age.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          </div>
+         <md-input-container class="md-block">
+        <md-checkbox name="tos" ng-model="registerForm.tos" required>
+          I accept the terms of service.
+        </md-checkbox>
+        <div ng-messages="registerForm.tos.$error" multiple md-auto-hide="false">
+          <div ng-message="required">
+            You must accept the terms of service before you can proceed.
+          </div>
+        </div>
+      </md-input-container>
+
+
+          <div layout="column" layout-align="center end">
+            <md-button type="submit" class="md-raised md-primary">Create Account</md-button>
+          </div>
+
+      </form>
+    </div>
+  </div>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+</md-content>
+
+
+
+
+    <!-- Angular Material requires Angular.js Libraries -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
+    <!-- Your application bootstrap  -->
+  <script type="text/javascript">    
+    /**
+     * You must include the dependency on 'ngMaterial' 
+     */
+
+
+   var app = angular.module('BlankApp', ['ngMaterial', 'ngMessages']);
+    app.controller('MyController', function($scope, $mdSidenav) {
+      $scope.openLeftMenu = function() {
+        $mdSidenav('left').toggle();
+      };
+   	$scope.status = '  ';
+  	$scope.customFullscreen = false;
+    $scope.showPrompt = function(ev) {
+	    // Appending dialog to document.body to cover sidenav in docs app
+	    var confirm = $mdDialog.prompt()
+	      .title('What would you name your dog?')
+	      .textContent('Bowser is a common name.')
+	      .placeholder('Dog name')
+	      .ariaLabel('Dog name')
+	      .initialValue('Buddy')
+	      .targetEvent(ev)
+	      .required(true)
+	      .ok('Okay!')
+	      .cancel('I\'m a cat person');
+
+	    $mdDialog.show(confirm).then(function(result) {
+	      $scope.status = 'You decided to name your dog ' + result + '.';
+	    }, function() {
+	      $scope.status = 'You didn\'t name your dog.';
+	    });
+	     console.log("Button clicked");
+	  };
+
+
+
+
+    });
+   app.config(function($mdIconProvider) {
+      $mdIconProvider.fontSet('md', 'material-icons');
+    });
+    app.run(function(){
+      console.log("My App is Ready");
+    });
+
+
+
+  </script>
+</body>
+</html>
+
+<!--
+Copyright 2016-2018 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be found in the LICENSE file at https://material.angularjs.org/latest/license.
+-->

@@ -1,0 +1,142 @@
+{% load static %}
+{% load settings_vars %}
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta property="og:url"                content="http://localhost:8000/" />
+<meta property="og:type"               content="article" />
+<meta property="og:title"              content="Check out this forecast on CASSIE: {{ poll.question }}"/>
+<meta property="og:description"        content="Join Cassie to forecast this and more! See how accurate you are at \
+                                                predicting the future!" />
+<meta property="og:image"              content="{{MEDIA_URL }}/social/logo_words.png" />
+
+
+<title>{% block head_title %} {{ page_title }} {% endblock %} | Key Universe</title>
+
+{% if "ALLOWED_HOSTS"|insettings %}
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<link rel="stylesheet"  type="text/css" href="lib/assets/css/style.css">
+	<script type="text/javascript" src="lib/assets/js/scripts.js"></script>
+
+{% else %}
+	<!-- Style Sheets -->
+	<link href="" rel="stylesheet">
+	<link href="{% static '/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+	<script src="http://localhost/repo/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="http://localhost/repo/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="http://localhost/repo/git_gotten/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
+
+	<script src="http://localhost/repo/bower_components/fingerprintjs2/dist/fingerprint2.min.js"></script>
+	<script type="text/javascript">
+		new Fingerprint2().get(function(result, components){
+	  console.log('result is', result); //a hash, representing your device fingerprint
+	  console.log('components are', components); // an array of FP components
+	});
+	</script>
+{% endif %}
+<link href="https://fonts.googleapis.com/css?family=Lato|Roboto' %}" rel="stylesheet">
+<link href="{% static '/css/style.css' %}" rel="stylesheet">
+<script src="{% static '/js/scripts.js' %}" ></script>
+
+</head>
+
+<body>
+{% include 'webcore/_shared/navbar.html' %}
+{% url 'webcore:home-page' as homepage_url %}
+<section id="notices">
+<div class="row">
+	<div class="text-center">
+		{% for msg in messages %}
+			
+	<div class="alert 
+	{% if msg.tags == 'error' %} alert-danger {% elif msg.tags == 'debug' %} alert-warning 
+	{% else %}  alert-{{msg.tags}} {% endif %} alert-dismissible fade in" role="alert">
+    <div class="container">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+     <strong> {% if msg.tags == 'info' %} Please Note!
+	{% elif msg.tags == 'success' %} Great!
+	{% elif msg.tags == 'error' %} Oops!
+	{% elif msg.tags == 'debug' %} Aw!
+	{% endif %}</strong> {{msg}}
+		</div>
+    </div>
+		{% empty %}
+
+		{% endfor %}
+	</div>
+</div>
+</section>
+
+{% if page_header %}
+{% include 'webcore/_shared/header.html' %}
+{% endif %}
+
+
+	{% block content %}
+
+	{% endblock %}
+
+<script type="text/javascript">
+	$('textarea').addClass('form-control');
+	$('textarea').attr('placeholder', 'Type your text here...');
+	$('textarea').attr('maxlength', '2600');
+	$(document).ready(function(){
+		loadWatcher();
+	});
+	$(document).change(function(){
+		loadWatcher();
+	});
+
+	function loadWatcher(){
+		console.log('called watcher');
+		$('.ajax-form').submit(function(){
+			console.log('processing form');
+			var form_data = new FormData();
+			$.ajax({
+				url: $(this).attr('action'),
+				method: $(this).attr('method'),
+				data: $(this).serialize(),
+				datatype: 'html',
+				success: function(data){
+					resultId = $(this).attr('data-ajax-result');
+					$(resultId).html(data);
+					console.log('done ajax');
+					console.log('ajax processing form');
+				},
+
+			});
+			console.log('processed form');
+			return false;
+			});
+		
+		$('.loadtodiv').click(function(){
+
+			url = $(this).attr('data-url');
+			returnDiv = $(this).attr('data-returnDiv');
+			$(returnDiv).html(data);
+		return false;
+		});
+	}
+	
+</script>
+
+<script type="text/javascript">
+
+	{% block extra_js %}
+
+{% endblock %}
+
+</script>
+
+ <!--JavaScript at end of body for optimized loading-->
+      <script type="text/javascript" src="http://localhost/repo/node_modules/materialize-css/dist/materialize.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<html lang="en" >
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+
+
+</head>
+<body ng-app="BlankApp" ng-cloak layout=column>
+<md-toolbar>
+     <h6>Hookup App</h6>
+</md-toolbar>
+<md-content id="content" flex>
+<div layout="column" layout-align="center center" layout-fill="layout-fill">
+    <div layout="column" class="loginBox md-whiteframe-z1">
+      <md-toolbar>
+        <h2 class="md-toolbar-tools"><span>Register</span></h2>
+      </md-toolbar>
+      <form name="registrationForm">
+        <md-content layout="column" class="md-padding">
+          <md-input-container>
+            <input required type="text" ng-model="signUpModel.fullname" name="fullname" placeholder="Name" />
+            <div ng-messages="registrationForm.fullname.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container>
+            <input required type="text" ng-model="signUpModel.email" name="email" placeholder="Email Address"/>
+            <div ng-messages="registrationForm.email.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container>
+            <input required type="password" ng-model="signUpModel.password" name="password" placeholder="Password" />
+            <div ng-messages="registrationForm.password.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <div layout="row">
+             <md-input-container>
+            <input required type="text" ng-model="signUpModel.gender" name="gender" placeholder="Gender"/>
+            <div ng-messages="registrationForm.gender.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+                       <md-input-container>
+            <input required type="text" ng-model="signUpModel.age" name="age" placeholder="Age"/>
+            <div ng-messages="registrationForm.age.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          </div>
+          <div layout="column" layout-align="center center">
+            <md-button type="submit" class="md-raised md-primary">Register</md-button>
+         <br>
+         <br>
+          </div>
+             <md-divider></md-divider>
+            <md-button href="#" md-no-ink>I already have an account</md-button>
+         
+          
+        </md-content>
+      </form>
+    </div>
+  </div>
+</div>
+</md-content>
+
+
+
+
+    <!-- Angular Material requires Angular.js Libraries -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
+    <!-- Your application bootstrap  -->
+  <script type="text/javascript">    
+    /**
+     * You must include the dependency on 'ngMaterial' 
+     */
+
+
+   var app = angular.module('BlankApp', ['ngMaterial', 'ngMessages']);
+    app.controller('MyController', function($scope, $mdSidenav) {
+      $scope.openLeftMenu = function() {
+        $mdSidenav('left').toggle();
+      };
+    });
+   app.config(function($mdIconProvider) {
+      $mdIconProvider.fontSet('md', 'material-icons');
+    });
+    app.run(function(){
+      console.log("My App is Ready");
+    });
+
+
+   
+
+  </script>
+</body>
+</html>
+
+<!--
+Copyright 2016-2018 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be found in the LICENSE file at https://material.angularjs.org/latest/license.
+-->
