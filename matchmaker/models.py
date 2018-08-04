@@ -13,7 +13,7 @@ from .utils import (GENDER_CHOICES,
 						CHILDREN_CHOICES,
 						PETS_CHOICES,
 						CAR_CHOICES,
-						HOME_OWNDERSHIP_CHOICES,
+						HOME_OWNERSHIP_CHOICES,
 						PROFESSION_CHOICES,
 						INDUSTRY_CHOICES,
 						EDUCATION_CHOICES,
@@ -46,14 +46,14 @@ class UserProfile(TimeStampedModel):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
 	membership = models.ForeignKey(Membership, on_delete=models.SET_NULL, null=True)
 	date_of_birth = models.DateField(null=True)
-	gender = models.CharField(max_length=8, chpices=GENDER_CHOICES)
+	gender = models.CharField(max_length=8, choices=GENDER_CHOICES)
 	language = models.CharField(max_length=16, choices=LANGUAGE_CHOICES)
-	location = models.IPAddressField(null=True)
+	location = models.GenericIPAddressField(null=True)
 	city = models.CharField(max_length=20)
 	contacts  = models.ManyToManyField(User, related_name='contacts_set')
 	visitors = models.ManyToManyField(User, related_name='visitors_set')
 	blockedUsers = models.ManyToManyField(User, related_name='blockedUsers_set')
-	interests = models.ManyToManyField(Interest)
+	interests = models.ManyToManyField('Interest')
 
 
 class Photo(TimeStampedModel):
@@ -67,13 +67,8 @@ class Likes(TimeStampedModel):
 
 
 
-class Interest(TimeStampedModel):
-	name = models.CharField(max_length=50)
-	category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
-
-
 class BasicInfo(TimeStampedModel):
-	ethnicity = models.CharField(max_length=20, choices=ETHNICITY_CHOICES)
+	ethnicity = models.CharField(max_length=20, choices=ETHINICITY_CHOICES)
 	religion = models.CharField(max_length=20, choices=RELIGION_CHOICES)
 	sign = models.CharField(max_length=20, choices=SIGN_CHOICES)
 	body_type = models.CharField(max_length=20, choices=BODY_TYPE_CHOICES)
@@ -81,28 +76,28 @@ class BasicInfo(TimeStampedModel):
 
 
 class StatusInfo(TimeStampedModel):
-	sexual_orientation = models.CharField(max_length=20, choices=SEX_ORIENTATION_CHOICES)
-	relationship_status = models.CharField(max_length=20, chocies=REL_STATUS_CHOICES)
-	relationship_type = models.CharField(max_length=20, chocies=REl_TYPE_CHOICES)
+	sexual_orientation = models.CharField(max_length=20, choices=SEXUAL_ORIENTATION_CHOICES)
+	relationship_status = models.CharField(max_length=20, choices=REL_STATUS_CHOICES)
+	relationship_type = models.CharField(max_length=20, choices=REL_TYPE_CHOICES)
 
 
 
-class PersonalInfo(TimeStampedModels):
-	children =  models.CharField(max_length=20, chocies=CHILDREN_CHOICES)
-	pets = models.CharField(max_length=20, chocies=PET_CHOICES)
+class PersonalInfo(TimeStampedModel):
+	children =  models.CharField(max_length=20, choices=CHILDREN_CHOICES)
+	pets = models.CharField(max_length=20, choices=PETS_CHOICES)
 	car =  models.BooleanField(default=False)
-	home_ownership = models.CharField(max_length=20, chocies=HOME_OWNERSHIP_CHOICES)
+	home_ownership = models.CharField(max_length=20, choices=HOME_OWNERSHIP_CHOICES)
 	
 
 
 class ProfessionalInfo(TimeStampedModel):
-	profession = models.CharField(max_kength=20, choices=PRO_CHOICES)
+	profession = models.CharField(max_length=20, choices=PROFESSION_CHOICES)
 	industry = models.CharField(max_length=20, choices=INDUSTRY_CHOICES)
 	education = models.CharField(max_length=20, choices=EDUCATION_CHOICES)
 
 
 
-class HabitInfo(models.Modlel):
+class HabitInfo(TimeStampedModel):
 	smoking =  models.CharField(max_length=20, choices=SMOKING_CHOICES)
 	drinking = models.CharField(max_length=20, choices=DRINKING_CHOICES)
 	drug = models.CharField(max_length=20, choices=DRUG_CHOICES)

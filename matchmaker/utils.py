@@ -102,7 +102,7 @@ CAR_CHOICES = (("I don't have one","I don't have one"),
 ('I have my own car','I have my own car'),)
 
 
-HOME_OWNDERSHIP_CHOICES = (('Live in a dormitory','Live in a dormitory'),
+HOME_OWNERSHIP_CHOICES = (('Live in a dormitory','Live in a dormitory'),
 ('Own a house/apartments','Own a house/apartments'),
 ('Share a flat','Share a flat'),
 ('Rent a house/apartments','Rent a house/apartments'),
