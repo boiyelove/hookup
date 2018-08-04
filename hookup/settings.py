@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     # 'notifications',
     'mailer',
     'postman',
+    'accounts.apps.AccountsConfig',
+    'matchmaker.apps.MatchmakerConfig',
 
 
 
@@ -75,7 +77,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
-                'django.templates.context_processors.request',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -114,8 +116,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTHENTICATION_BACKEND = (
-    'django.conteib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.Authenticationbackend',
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
     )
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
@@ -145,4 +147,4 @@ POSTMAN_AUTO_MODERATE_AS = True
 POSTMAN_SHOW_USER_AS = 'or_me'
 # POSTMAN_NOTIFIER_APP = 'notifications'
 
-SITE_ID = 1
+SITE_ID = 3

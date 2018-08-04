@@ -18,7 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
+    path('', include('allauth.urls')),
     # path('inbox/notifications/', include('notifications.urls', namespace='notifications')),
     path('messages/', include('postman.urls', namespace='postman')),
 
