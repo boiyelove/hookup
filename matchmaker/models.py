@@ -50,7 +50,7 @@ class UserProfile(TimeStampedModel):
 	language = models.CharField(max_length=16,null=True, choices=LANGUAGE_CHOICES)
 	location = models.GenericIPAddressField(null=True)
 	city = models.CharField(max_length=20)
-	views = models.PositiveIntegerField(default=0)
+	visitors_view_count = models.PositiveIntegerField(default=0)
 	contacts  = models.ManyToManyField(User, related_name='contacts_set')
 	visitors = models.ManyToManyField(User, related_name='visitors_set')
 	blockedUsers = models.ManyToManyField(User, related_name='blockedUsers_set')
