@@ -46,10 +46,11 @@ class UserProfile(TimeStampedModel):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
 	membership = models.ForeignKey(Membership, on_delete=models.SET_NULL, null=True)
 	date_of_birth = models.DateField(null=True)
-	gender = models.CharField(max_length=8, choices=GENDER_CHOICES)
-	language = models.CharField(max_length=16, choices=LANGUAGE_CHOICES)
+	gender = models.CharField(max_length=8,null=True, choices=GENDER_CHOICES)
+	language = models.CharField(max_length=16,null=True, choices=LANGUAGE_CHOICES)
 	location = models.GenericIPAddressField(null=True)
 	city = models.CharField(max_length=20)
+	views = models.PositiveIntegerField(default=0)
 	contacts  = models.ManyToManyField(User, related_name='contacts_set')
 	visitors = models.ManyToManyField(User, related_name='visitors_set')
 	blockedUsers = models.ManyToManyField(User, related_name='blockedUsers_set')
@@ -59,46 +60,53 @@ class UserProfile(TimeStampedModel):
 class Photo(TimeStampedModel):
 	author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='userphotos')
 	image = models.ImageField(upload_to='uploads/user_photos')
+	viewed_by = models.ManyToManyField(User, related_name='photoviewby_list')
 
 
 class Likes(TimeStampedModel):
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	likedUsers = models.ManyToManyField(User, related_name='likedusers')
 	likedPhotos = models.ManyToManyField(Photo, related_name='likedphotos')
 
 
 
 class BasicInfo(TimeStampedModel):
-	ethnicity = models.CharField(max_length=20, choices=ETHINICITY_CHOICES)
-	religion = models.CharField(max_length=20, choices=RELIGION_CHOICES)
-	sign = models.CharField(max_length=20, choices=SIGN_CHOICES)
-	body_type = models.CharField(max_length=20, choices=BODY_TYPE_CHOICES)
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	ethnicity = models.CharField(max_length=20,null=True, choices=ETHINICITY_CHOICES)
+	religion = models.CharField(max_length=20,null=True, choices=RELIGION_CHOICES)
+	sign = models.CharField(max_length=20,null=True, choices=SIGN_CHOICES)
+	body_type = models.CharField(max_length=20,null=True, choices=BODY_TYPE_CHOICES)
 
 
 
 class StatusInfo(TimeStampedModel):
-	sexual_orientation = models.CharField(max_length=20, choices=SEXUAL_ORIENTATION_CHOICES)
-	relationship_status = models.CharField(max_length=20, choices=REL_STATUS_CHOICES)
-	relationship_type = models.CharField(max_length=20, choices=REL_TYPE_CHOICES)
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	sexual_orientation = models.CharField(max_length=20,null=True, choices=SEXUAL_ORIENTATION_CHOICES)
+	relationship_status = models.CharField(max_length=20,null=True, choices=REL_STATUS_CHOICES)
+	relationship_type = models.CharField(max_length=20,null=True, choices=REL_TYPE_CHOICES)
 
 
 
 class PersonalInfo(TimeStampedModel):
-	children =  models.CharField(max_length=20, choices=CHILDREN_CHOICES)
-	pets = models.CharField(max_length=20, choices=PETS_CHOICES)
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	children =  models.CharField(max_length=20,null=True, choices=CHILDREN_CHOICES)
+	pets = models.CharField(max_length=20,null=True, choices=PETS_CHOICES)
 	car =  models.BooleanField(default=False)
-	home_ownership = models.CharField(max_length=20, choices=HOME_OWNERSHIP_CHOICES)
+	home_ownership = models.CharField(max_length=20,null=True, choices=HOME_OWNERSHIP_CHOICES)
 	
 
 
 class ProfessionalInfo(TimeStampedModel):
-	profession = models.CharField(max_length=20, choices=PROFESSION_CHOICES)
-	industry = models.CharField(max_length=20, choices=INDUSTRY_CHOICES)
-	education = models.CharField(max_length=20, choices=EDUCATION_CHOICES)
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	profession = models.CharField(max_length=20,null=True, choices=PROFESSION_CHOICES)
+	industry = models.CharField(max_length=20,null=True, choices=INDUSTRY_CHOICES)
+	education = models.CharField(max_length=20,null=True, choices=EDUCATION_CHOICES)
 
 
 
 class HabitInfo(TimeStampedModel):
-	smoking =  models.CharField(max_length=20, choices=SMOKING_CHOICES)
-	drinking = models.CharField(max_length=20, choices=DRINKING_CHOICES)
-	drug = models.CharField(max_length=20, choices=DRUG_CHOICES)
-	diet = models.CharField(max_length=20, choices=DIET_CHOICES)
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	smoking =  models.CharField(max_length=20,null=True, choices=SMOKING_CHOICES)
+	drinking = models.CharField(max_length=20,null=True, choices=DRINKING_CHOICES)
+	drug = models.CharField(max_length=20,null=True, choices=DRUG_CHOICES)
+	diet = models.CharField(max_length=20,null=True, choices=DIET_CHOICES)

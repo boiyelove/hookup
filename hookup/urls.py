@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from allauth.account.views import LoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('allauth.urls')),
+    path('login/', LoginView, name='login'),
     # path('inbox/notifications/', include('notifications.urls', namespace='notifications')),
     path('messages/', include('postman.urls', namespace='postman')),
 

@@ -26,7 +26,10 @@ SECRET_KEY = '+!@em2u9tgzz90ph^_$b_^@xpz#xz=9o4&h7_xc$j&$7(2lyz1'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+try:
+    from .production import *
+except:
+    from .local import *
 
 # Application definition
 
@@ -38,15 +41,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'material',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.facebook',
     # 'notifications',
     'mailer',
     'postman',
-    'accounts.apps.AccountsConfig',
+    # 'accounts.apps.AccountsConfig',
     'matchmaker.apps.MatchmakerConfig',
 
 
@@ -136,8 +140,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'pstatic')
 
 EMAIL_BACKEND = 'mailer.backend.DbBackend'
 POSTMAN_DISALLOW_ANONYMOUS = True
@@ -147,4 +149,5 @@ POSTMAN_AUTO_MODERATE_AS = True
 POSTMAN_SHOW_USER_AS = 'or_me'
 # POSTMAN_NOTIFIER_APP = 'notifications'
 
+LOGIN_REDIRECT_URL = '/'
 SITE_ID = 3
