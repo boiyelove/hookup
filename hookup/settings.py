@@ -32,7 +32,7 @@ except:
     from .local import *
 
 # Application definition
-
+AUTH_USER_MODEL = 'matchmaker.User'
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,19 +41,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'material',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     # 'allauth.socialaccount.providers.google',
     # 'allauth.socialaccount.providers.facebook',
-    # 'notifications',
     'mailer',
-    'postman',
     # 'accounts.apps.AccountsConfig',
     'matchmaker.apps.MatchmakerConfig',
-
-
+    'pinax.notifications',
+    'pinax.messages',
+    'material',
 
 ]
 
@@ -82,6 +80,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 'django.template.context_processors.request',
+                'pinax.messages.context_processors.user_messages'
             ],
         },
     },
@@ -148,6 +147,20 @@ POSTMAN_DISALLOW_COPIES_ON_REPLY = True
 POSTMAN_AUTO_MODERATE_AS = True
 POSTMAN_SHOW_USER_AS = 'or_me'
 # POSTMAN_NOTIFIER_APP = 'notifications'
-
-LOGIN_REDIRECT_URL = '/'
+from django.urls import reverse_lazy
+LOGIN_URL = reverse_lazy('login')
+LOGIN_REDIRECT_URL = reverse_lazy('matchmaker:view-user-home')
 SITE_ID = 3
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_SESSION_REMEMBER = True
+
+ACCOUNT_FORMS = {
+    'signup': 'matchmaker.forms.SignUpForm',
+}
+
+MIN_AGE = 18
+MAX_AGE = 65

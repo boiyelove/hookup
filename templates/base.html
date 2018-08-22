@@ -1,50 +1,173 @@
+{% load staticfiles %}
 <html lang="en" >
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+ <title>{% block head_title %}{% endblock %}</title>
+    {% block extra_head %}
+    {% endblock %}
+
 
 {% include 'material/includes/material_css.html' %}
+<script type="text/javascript" src="http://localhost/repo/bower_components/jquery/dist/jquery.min.js"></script>
 {% include 'material/includes/material_js.html' %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.min.css' %}">
+<script type="text/javascript">
+     $(document).ready(function(){
+      M.AutoInit();
+      function getSpinner(){
+        return '<div class="preloader-wrapper active"><div class="spinner-layer spinner-red-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>'
+      }
+      // $('#right-nav').sidenav({'edge':'right'});
+      $('textarea').characterCounter();
+      function getTab(e){
+        $(e).addClass('center-align');
+        $(e).html(getSpinner());
+        console.log(e);
+        $.ajax({
+          url: $(e).data('href'),
+        }).done(function(data){
+          $(e).removeClass('center-align');
+          // console.log(data);
+          // console.log($(e).data('html'));
+          // console.log(data['html']);
+          if ($(e).data('type') == 'html' ){
+                      data = data['html']
+            }
+          $(e).html(data);
+          $('.carousel').carousel();
+          $('select').formSelect();
+          M.updateTextFields();
+          $('textarea').characterCounter();
+        
+        }).fail(function(data){
+          console.log(data);
+          M.toast({html: "<i class='large material-icons' style='font-size:1em; padding-right:0.5em;'>report_problem</i> Something went wrong, please try again (" + data.status + ' - '+ data.statusText + ")",
+            classes: 'red'});
 
 
+        });
+
+         }
+      $('.tabs').tabs({'onShow': getTab})
+     {% if messages %}
+        {% for message in messages %}
+         M.toast({html: "{% if message.tags == 'success' %}<i class='large material-icons' style='font-size:1em; padding-right:0.5em;'>done_all</i>{% elif message.tags == 'warning' %} <i class='large material-icons' style='font-size:1em; padding-right:0.5em;'>priority_high</i>{% elif message.tags == 'error' %} <i class='large material-icons' style='font-size:1em; padding-right:0.5em;'>report_problem</i> {% elif message.tags == 'info' %} <i class='large material-icons' style='font-size:1em; padding-right:0.5em;'>info_outline</i>{% endif %}{{message}}", displayLength: {{ forloop.counter}}000, classes: {% if message.tags == 'success' %}'teal' {% elif message.tags == 'warning' %} 'amber' {% elif message.tags == 'error' %} 'red' {% elif message.tags == 'info' %} 'light-blue'{%endif %} });
+        {% endfor %}
+      {% endif %}
+
+      {% block extra_ready_js %}
+      {% endblock %}
+ 
+        $('.ajaxform').on('submit', function(e){
+          e.preventDefault();
+          form = $(this);
+          fd = $(this).serialize();
+          btn = $(this).find('button');
+          fd = fd + '&' + btn.attr('name') + '=' + btn.attr('value');
+          $(this).html(getSpinner());
+          $.ajax({
+            type: "POST",
+            url: $(this).attr('action'),
+            data: fd,
+          }).done(function(data){
+            form.replaceWith(data['html']);
+            $('.carousel').carousel();
+            $('select').formSelect();
+            M.updateTextFields();
+            $('textarea').characterCounter();
+            M.toast({html: data['message'], classes:'blue'});
+          }).fail(function(data){
+            form.replaceWith(data['html']);
+            M.toast({html: "Something went wrong", classes:'red'});
+          });
+        });
+
+  });
+</script>
 </head>
-<body ng-app="BlankApp" ng-cloak layout=column>
-{% block content %}
-
-{% endblock %}
-
-    <!-- Angular Material requires Angular.js Libraries -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
-
-  <!-- Angular Material Library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
-    <!-- Your application bootstrap  -->
-  <script type="text/javascript">    
-    /**
-     * You must include the dependency on 'ngMaterial' 
-     */
-
-
-   var app = angular.module('BlankApp', ['ngMaterial', 'ngMessages']);
-    app.controller('MyController', function($scope, $mdSidenav) {
-      $scope.openLeftMenu = function() {
-        $mdSidenav('left').toggle();
-      };
-    });
-   app.config(function($mdIconProvider) {
-      $mdIconProvider.fontSet('md', 'material-icons');
-    });
-    app.run(function(){
-      console.log("My App is Ready");
-    });
+<body>
+  <div class="navbar-fixed">
+<nav class="nav-extended indigo darken-3">
+    <div class="container-fluid">
+      <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Hookup</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+<!--         <li><a href="collapsible.html">Upgrade</a>
+         </li> -->
+           {% if user.is_authenticated %}
+          <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
+          <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
+          {% else %}
+          <li><a href="{% url 'login' %}">Sign In</a></li>
+          <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+          {% endif %}
+          </ul>
+      </ul>
+    </div>
+    </div>
+  </nav>
+</div>
+     <ul>
 
 
-   
+  <div class="row">
+    {% block body %}
+                {% block content %}
+                {% endblock %}
+    
+    {% endblock %}
+    {% block extra_body %}
+    {% endblock %}
+    </div>
+
+
+
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+  <script type="text/javascript">     
+        $('.toggle_on_off').bind('click', function(e){
+        token_input = $(this).find("input[name='csrfmiddlewaretoken']");
+        fdata = "fname=" + $(this).data('fname') + "&username=" + $(this).data('username') + "&user_action=" + $(this).data('value') + "&csrfmiddlewaretoken=" + token_input.val();
+
+        btn = $(this)
+        $.ajax({
+          type: 'POST',
+          url: $(this).data('href'),
+          data: fdata,
+        }).done(function(data){
+            btn.data('value', data['value']);
+            token_input.attr('value', data['token']);
+            if(data['value'] == 'on'){
+                btn.find('i').html(btn.data('off_class'));
+             } else if (data['value'] == 'off'){
+                btn.find('i').html(btn.data('on_class'));
+            }
+            M.toast({html: data['message'],classes:'blue'});
+        }).fail(function(data){
+          M.toast({html: "Something went wrong", classes:'red'});
+        }); 
+
+      });
+
 
   </script>
+  <script type="text/javascript">    
+    {% block extra_js %}
+   
+    {% endblock %}
+  </script>
+    }
 </body>
 </html>
 

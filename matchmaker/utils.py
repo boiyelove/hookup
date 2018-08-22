@@ -98,8 +98,8 @@ PETS_CHOICES = (('Other','Other'),
 
 
 
-CAR_CHOICES = (("I don't have one","I don't have one"),
-('I have my own car','I have my own car'),)
+CAR_CHOICES = ((False,"I don't have one"),
+(True,'I have my own car'),)
 
 
 HOME_OWNERSHIP_CHOICES = (('Live in a dormitory','Live in a dormitory'),
@@ -172,3 +172,254 @@ DIET_CHOICES = (('Vegan','Vegan'),
 ('I eat meat','I eat meat'),
 ('Halal','Halal'),
 ('Vegetarian','Vegetarian'),)
+
+
+
+
+def create_dummyUsers():
+	from .models import User
+	from faker import Faker
+	fake = Faker()
+	user_exist = True
+	for n in range(1,5001):
+		while user_exist:
+			profile = fake.simple_profile()
+			email = 'daahrmmieboiye+' + profile['mail'].split('@')[0] + '@gmail.com'
+			user_exist = User.objects.filter(email=email).exists()
+			user_exist  = User.objects.filter(username=(profile['username']).lower().strip()).exists()
+			if profile['sex'] == 'M':
+				gender = GENDER_CHOICES[0][0]
+			elif profile['sex'] == 'F':
+				gender = GENDER_CHOICES[1][0]
+		if (not user_exist) and (not('.' in profile['name'])) and (len((profile['name']).split(' ')) == 2):
+			name = (profile['name']).split(' ')
+			user = User.objects.create_user(
+				first_name = name[0],
+				last_name = name[1],
+				gender = gender,
+				username = (profile['username']).lower().strip(),
+				email = email,
+				date_of_birth = profile['birthdate'],
+				password = 'ps_123456')
+			user.profile.about = fake.text(max_nb_char=160)
+			user.profile.save()
+		user_exist=True
+
+
+def create_interests():
+	from .models import Category, Interest
+	allinterestlists = ['Films and TV Series',
+				'Comedy',
+				'Action',
+				'Adventure',
+				'Drama',
+				'Romantic',
+				'comedy',
+				'Documentary',
+				'Horror',
+				'Science',
+				'fiction',
+				'Fantasy',
+				'Historical',
+				'Animated',
+				'films',
+				'Musicals',
+				'Police',
+				'drama',
+				'Cartoons',
+				'Arthouse',
+				'Thriller',
+				'Discovery',
+				'Anime',
+				'Crime',
+				'drama',
+				'Melodrama',
+				'Reality show',],['Listening to Music',
+				'Pop-rock',
+				'R n B',
+				'Dance and DJ Soul',
+				'Rock',
+				'Classical/opera',
+				'Blues',
+				'Jazz',
+				'Country',
+				'Soundtracks',
+				'Hard rock',
+				'Rap',
+				'Electronic/techno',
+				'Disco',
+				'Metal',
+				'Pop',
+				'Grunge',
+				'Hip-Hop',], ['Games',
+				'Computer games',
+				'Table-top games',
+				'Quests',
+				'Adventure',], ['Books',
+				'Ancient literature',
+				'Medieval prose',
+				'Biographical fiction',
+				'Historical fiction',
+				'Horoscopes/fortune telling',
+				'Business literature',
+				'Detective story',
+				'Fairy tales',
+				'Lyrics',
+				'Poetry',
+				'Romance Science and Technology',
+				'Mystic',
+				'Adventure',
+				'Psychological prose',
+				'Science fiction',
+				'Philosophy',
+				'Fantasy',], ['Sports',
+				'Hiking',
+				'Fitness training',
+				'American football',
+				'Jogging',
+				'Cycling',
+				'Swimming',
+				'Тennis',
+				'Rugby',
+				'Skiing',
+				'Snowboarding',
+				'Boxing',
+				'Wrestling',
+				'Billiards / pool',
+				'Badminton',
+				'Gym / body building',
+				'Table tennis',
+				'Rock climbing',
+				'Soccer',
+				'Basketball',
+				'Volleyball',
+				'Chess',
+				'Fencing',
+				'Wakeboarding',
+				'Surfing',
+				'Diving',
+				'Kayaks',
+				'Horseback riding',], ['Pets',
+				'Dogs',
+				'Cats',
+				'Rabbits',
+				'Hamsters',
+				'Iguana',
+				'Parrot',
+				'Ferret',
+				'Turtle',
+				'Guinea Pig',
+				'Fish',
+				'Chinchilla',
+				'Ant farm',
+				'Frog',
+				'Mouse',
+				'Pig',
+				'Rat Salamander',], ['Style',
+				'Sophisticated',
+				'Trendy',
+				'Business',
+				'Classical',
+				'Cool',
+				'Rock',
+				'Sporty',
+				'Casual',], ['Hobby',
+				'Reading',
+				'Watching TV',
+				'Going to Movies',
+				'Fishing',
+				'Computer',
+				'Gardening',
+				'Walking',
+				'Listening to Music',
+				'Hunting',
+				'Team',
+				'Sports',
+				'Shopping',
+				'Traveling',
+				'Socializing',
+				'Playing',
+				'Music',
+				'Crafts',
+				'Watching sports',
+				'Sport activities',
+				'Cooking',
+				'Camping',
+				'Art work',
+				'Animal Care',
+				'Bowling',
+				'Theater',
+				'Billiards',
+				'Volunteer Work',], ['Travelling',
+				'Adventure',
+				'Cruising (maritime)‎',
+				'Business tourism',
+				'Safari holidays',
+				'Hitch-hiking',
+				'Bicycle tours‎ ‎',
+				'Ecotourism‎',
+				'Food tourism',
+				'Domestic tourism',
+				'Excursions',
+				'Extreme tourism',
+				'Motorcycle touring',
+				'Self-guided tour',
+				'Sports tourism',
+				'Walking tour',
+				'Wildlife tourism',], ['Inspiration',
+				'Time on your own',
+				'Communication',
+				'Family time',
+				'Art',
+				'Sports',
+				'Adventure',
+				'Nature',
+				'Fiction',
+				'Business literature',
+				'Listening to Music',
+				'Meditation',
+				'Working',
+				'Science',
+				'Movies',
+				'Self-education',
+				'Success stories',], ['People',
+				'No preference',
+				'Adventurous',
+				'Confident',
+				'Easy going',
+				'Funny',
+				'Generous',
+				'Helpful',
+				'Reliable',
+				'Reserved',
+				'Sensitive',
+				'Thoughtful',
+				'Athletic',
+				'Attractive',
+				'Balanced',
+				'Freethinking',
+				'Honest',
+				'Independent',
+				'Individualistic',
+				'Kind',
+				'Leaderly',
+				'Optimistic',]
+	for interestlist in allinterestlists:
+		cat = interestlist.pop(0)
+		cat = Category.objects.create(name=cat)
+		for interest in interestlist:
+			Interest.objects.create(name=interest, category=cat)
+
+
+def addRandomUserInterests():
+	import random
+	from .models import User, Interest
+	interestCount = Interest.objects.count()
+	for user in User.objects.all():
+		for n in range(1, random.randint(4, 20)):
+			pick  = random.randint(1, interestCount)
+			try:
+				interest = Interest.objects.get(id=pick)
+				user.profile.interests.add(interest)
+			except Exception as e:
+				print('Error', e)

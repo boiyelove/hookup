@@ -18,10 +18,12 @@ from django.urls import path, include
 from allauth.account.views import LoginView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('adminx/', admin.site.urls),
+    path('login/', LoginView.as_view(), name='login'),
     path('', include('allauth.urls')),
-    path('login/', LoginView, name='login'),
     # path('inbox/notifications/', include('notifications.urls', namespace='notifications')),
-    path('messages/', include('postman.urls', namespace='postman')),
+    # path('', include('postman.urls', namespace='postman')),
+    path('', include('matchmaker.urls', namespace='matchmaker')),
+    path('messages/', include('pinax.messages.urls', namespace='pinax_messages')),
 
 ]
