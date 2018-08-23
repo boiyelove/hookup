@@ -25,11 +25,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEBUG = True
 
 
-try:
-    from .production import *
-except:
-    from .local import *
-
 # Application definition
 AUTH_USER_MODEL = 'matchmaker.User'
 INSTALLED_APPS = [
@@ -162,5 +157,12 @@ ACCOUNT_FORMS = {
 
 MIN_AGE = 18
 MAX_AGE = 65
+
+
+try:
+    from .production import *
+except:
+    from .local import *
+
 
 print("In  SETTINGS\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
