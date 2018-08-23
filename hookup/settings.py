@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
 try:
@@ -148,7 +148,7 @@ POSTMAN_SHOW_USER_AS = 'or_me'
 from django.urls import reverse_lazy
 LOGIN_URL = reverse_lazy('login')
 LOGIN_REDIRECT_URL = reverse_lazy('matchmaker:view-user-home')
-SITE_ID = 3
+SITE_ID = 1
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
 ACCOUNT_EMAIL_REQUIRED = True
@@ -162,3 +162,5 @@ ACCOUNT_FORMS = {
 
 MIN_AGE = 18
 MAX_AGE = 65
+
+print("In  SETTINGS\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
