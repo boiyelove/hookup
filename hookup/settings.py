@@ -19,13 +19,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '+!@em2u9tgzz90ph^_$b_^@xpz#xz=9o4&h7_xc$j&$7(2lyz1'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+
 try:
     from .production import *
 except:
@@ -47,8 +46,7 @@ INSTALLED_APPS = [
     # 'allauth.socialaccount.providers.google',
     # 'allauth.socialaccount.providers.facebook',
     'mailer',
-    # 'accounts.apps.AccountsConfig',
-    'matchmaker.apps.MatchmakerConfig',
+    'matchmaker',
     'pinax.notifications',
     'pinax.messages',
     'material',

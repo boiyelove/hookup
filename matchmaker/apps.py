@@ -6,3 +6,4 @@ class MatchmakerConfig(AppConfig):
 
     def ready(self):
     	from . import signals
+    	super().ready()
