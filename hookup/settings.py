@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'matchmaker.apps.MatchmakerConfig',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -44,7 +45,7 @@ INSTALLED_APPS = [
     'pinax.notifications',
     'pinax.messages',
     'material',
-    'matchmaker',
+
 
 ]
 
@@ -143,7 +144,7 @@ POSTMAN_SHOW_USER_AS = 'or_me'
 from django.urls import reverse_lazy
 LOGIN_URL = reverse_lazy('login')
 LOGIN_REDIRECT_URL = reverse_lazy('matchmaker:view-user-home')
-SITE_ID = 1
+SITE_ID = 3
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
 ACCOUNT_EMAIL_REQUIRED = True
@@ -163,6 +164,3 @@ try:
     from .production import *
 except:
     from .local import *
-
-
-print("In  SETTINGS\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")

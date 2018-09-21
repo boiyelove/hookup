@@ -1,16 +1,33 @@
 {% load staticfiles %}
+{% load matcher_tags %}
 <html lang="en" >
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
  <title>{% block head_title %}{% endblock %}</title>
-    {% block extra_head %}
-    {% endblock %}
+{% use_cdn as use_cdn %}
 
+{% if use_cdn %}
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+ 
+{% else %}
 
 {% include 'material/includes/material_css.html' %}
 <script type="text/javascript" src="http://localhost/repo/bower_components/jquery/dist/jquery.min.js"></script>
-{% include 'material/includes/material_js.html' %}
+
+{% include 'material/includes/material_js.html' %}      
+
+
+{% endif %}
+
 <link rel="stylesheet" type="text/css" href="{% static 'css/styles.min.css' %}">
 <script type="text/javascript">
      $(document).ready(function(){
@@ -85,6 +102,8 @@
 
   });
 </script>
+    {% block extra_head %}
+    {% endblock %}
 </head>
 <body>
   <div class="navbar-fixed">
@@ -109,7 +128,7 @@
     </div>
   </nav>
 </div>
-     <ul>
+     </ul>
 
 
   <div class="row">

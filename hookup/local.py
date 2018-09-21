@@ -16,3 +16,4 @@ SECRET_KEY = '+!@em2u9tgzz90ph^_$b_^@xpz#xz=9o4&h7_xc$j&$7(2lyz1'
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
+USE_CDN = False
