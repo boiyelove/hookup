@@ -1,0 +1,39 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load material_form %}
+{% load staticfiles %}
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+
+{% block extra_head %}
+<style type="text/css">
+  body{
+    background-color: #fff;
+  }
+</style>
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+  <div class="col m8" style="padding:0!important;">
+    <img width="100%" src="{% static 'img/front-banner-2.jpg' %}" />
+  </div>
+  <div class="col m4" style="padding:0 2% 0 2%;">
+
+  <h5 class="blue-text">{% trans "Sign Up" %}</h5>
+
+<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
+<form class="signup" id="signup_form" method="post" accept="" tion="{% url 'account_signup' %}">
+  {% csrf_token %}
+     {% form form=form %}{% endform %}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button type="submit" class="btn teal m-4">{% trans "Sign Up" %} &raquo;</button>
+</form>
+
+</div>
+{% endblock %}

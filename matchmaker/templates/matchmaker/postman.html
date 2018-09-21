@@ -1,0 +1,14 @@
+{% load i18n %}{% load postman_tags %}
+{% load static %}
+{% block title %}{% trans "Messaging" %}{% endblock %}
+{% block extrahead %}{{ block.super }}
+<link type="text/css" media="all" rel="stylesheet" href="
+{# dj v1.4 #}{% static 'postman/css/postman.css' %}
+" />{% endblock %}
+{% block postman_menu %}
+<h1>Hello</h1>
+{% endblock %}
+
+Then in your app create templates folder. Within template folder create postman folder and you can create files like base.html or base_folder.html and override the custom files and the view. I have tried this and ensured it works.
+
+Extra info: I created base.html within myapp/templates/postman folder:

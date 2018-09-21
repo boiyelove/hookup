@@ -1,0 +1,35 @@
+<div class="row">
+  {% for user in user_list %}
+  <div class="col s12 m4">
+    <div class="card">
+      <div class="card-image waves-effect waves-block waves-light">
+        <img class="activator" src="http://localhost/sample-static/img/member-3.png">          
+      </div>
+      <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4">{{ user.username | title }}<i class="material-icons right teal-text">more_vert</i></span>
+        <p><small>{{user.get_age}} years</small> | Lagos, Nigeria | {{user.gender}} 
+        </p>
+      </div>
+      <div class="card-reveal teal text-white" style="color:white !important;">
+                <p>
+          <img class="circle center" src="http://localhost/sample-static/img/member-3.png" height="200px" width="200px"></span>
+        </p>
+          
+        <span class="card-title">{% if user.first_name and user.last_name %}{{ user.first_name | title }} {{ user.last_name | title }}{% else %} {{ user.username | title }}{% endif %}<i class="material-icons right">close</i></span>
+        <p>{{ user.profile.about }}</p>
+          <p><a href="{% url 'matchmaker:view-user-profile' user.username %}" class="btn waves-effect waves-light blue ">View Profile</a>
+        </p>
+      </div>
+     <div class="card-action text-right">
+          <button class="toggle_on_off btn-floating btn-sm waves-effect waves-light blue right-align" data-fname="contacts" data-href="{% url 'matchmaker:list-contacts' %}" data-value="{% if user in request.user.profile.contacts.all %}off{% else %}on{% endif %}" data-username="{{user.username}}"  data-on_class="person" data-off_class="person_outline">{% csrf_token %}<i class="material-icons center">{% if user in request.user.profile.contacts.all %}person{% else %}person_outline{% endif %}</i></button>
+          <button class="toggle_on_off btn-floating btn-sm waves-effect waves-light red right-align" data-fname="like" data-href="{% url 'matchmaker:list-likes' %}" data-value="{% if user in request.user.likes.likedUsers.all %}off{% else %}on{% endif %}" data-username="{{user.username}}" data-on_class="favorite" data-off_class="favorite_border" >{% csrf_token %}<i class="material-icons">{% if user in request.user.likes.likedUsers.all %}favorite{% else %}favorite_border{% endif %}</i></button>
+          <a href="#" class="btn-floating btn-sm waves-effect waves-light teal text-white right-align">
+            <i class="material-icons">mail_outline</i>
+          </a>
+      </div>
+    </div>
+  </div>  
+  {% empty %}
+    <h5 class="center-align">No users here yet</h5>
+  {% endfor %}
+</div>

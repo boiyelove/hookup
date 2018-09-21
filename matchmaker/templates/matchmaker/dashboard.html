@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="col s12 m2 l2" style="padding:60 0 0 0 !important;">
+              <ul id="slide-out" class="sidenav sidenav-fixed col s2 m2 l2" style="padding:60 0 0 0 !important;z-index:995;">
+                <li style="padding-top:25px;padding-bottom: 40px;margin-bottom: 15px;">
+                              
+                 <a><img class="circle" src="http://localhost/sample-static/img/member-3.png" width="80" height="80&quot;"><div class="center-align" style="top: 155px;left: 30px;position: absolute;display: inline-block;">ambermckenzie</div></a>
+                
+                
+                  
+                </li>
+                <li><a class="waves-effect active" href="{% url 'matchmaker:view-user-home' %}"><i class="material-icons">home</i>Home</a></li>
+                <li><a class="waves-effect" href="{% url 'matchmaker:view-discovery' %}"><i class="material-icons">blur_circular</i>Discovery</a></li>
+                <li><a class="waves-effect" href="{% url 'matchmaker:list-contacts' %}""><i class="material-icons">contact_phone</i>Contacts</a></li>
+                <li><a class="waves-effect" href="{% url 'matchmaker:view-msg' %}"><i class="material-icons">mail_outline</i>Messages</a></li>
+                <li><a class="waves-effect" href="{% url 'matchmaker:list-visitors' %}"><i class="material-icons">remove_red_eye</i>Visitors</a></li>
+                <li><a class="waves-effect" href="{% url 'matchmaker:list-likes' %}""><i class="material-icons">favorite_border</i>Likes</a></li>
+                 <li><a class="waves-effect" href="#"><i class="material-icons">grade</i>Top Users</a></li>
+                <li><a class="waves-effect" href="{% url 'matchmaker:view-profile' %}"><i class="material-icons">account_circle</i>Profile</a></li>
+                <li><a class="waves-effect" href="{% url 'matchmaker:view-settings' %}"><i class="material-icons">settings</i>Settings</a></li>
+                <li><a class="waves-effect" href="{% url 'account_logout' %}"><i class="material-icons">power_settings_new</i>Logout</a></li>
+              </ul>
+    </div>
+    	  
+    <div class="col s12 m10 l10">
+    {% if header_title %}
+      <p class="row">
+
+      	<h5>Liked Users {{ header_title | title }}</h5>
+      	 Lorem ipsum dolor sit amet, consectetur adipisicing elit {{ header_description }}
+    }
+	  </p>
+	
+	  <br>
+    {% endif %}
+      {% block content %}
+      {% endblock %}
+        </div>
+
+{% endblock %}

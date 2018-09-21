@@ -1,0 +1,19 @@
+
+<div class="row close-row">
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-title teal white-text" style="padding:.5em 1em .5em 1em;">Interests</div>
+        <div class="card-content">
+         {% for interest in user.profile.interests.all %}
+            <div class="chip {{ interest.color }} white-text">
+            {{ interest }}
+            {% if request.user.username == user.username %}
+            <i class="close material-icons">close</i>
+            {% endif %}
+          </div>
+        {% endfor %}
+        </div>
+
+      </div>
+    </div>
+  </div>

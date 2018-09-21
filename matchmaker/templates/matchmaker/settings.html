@@ -1,0 +1,20 @@
+ {% extends './dashboard.html' %}
+{% block content %}
+<div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s2"><a href="#membership">Membership</a></li>
+        <li class="tab col s2"><a href="#newsletter">Newsletter</a></li>
+        <li class="tab col s2"><a class="active" href="#password_change">Password Change</a></li>
+        <li class="tab col s2"><a href="#blocked_users">Blocked Users</a></li>
+        <li class="tab col s2"><a href="#delete_account">Delete Account</a></li>
+      </ul>
+    </div>
+    <div id="membership" class="col s12" data-href="/dummy-url">Membership <br>   </div>
+    <div id="newsletter" class="col s12" data-href="?q=change-email">Email / Newsletter  <br> </div>
+    <div id="password_change" class="col s12" data-href="{% url 'account_change_password' %}" data-type="html">Password Change  <br>  </div>
+    <div id="blocked_users" class="col s12" data-href="/dummy-url">Blocked Users <br>  </div>
+    <div id="delete_account" class="col s12" data-href="{% url 'matchmaker:delete-account' %}">Delete Account <br>   </div>
+  </div>
+
+{% endblock %}

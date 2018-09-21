@@ -1,0 +1,26 @@
+.nav_icon {
+  margin-right: .4em;
+  font-size: 1.8em;
+  color: #827f7f; }
+
+a {
+  text-decoration: none;
+  color: #827f7f;
+  font-size: 0.8em; }
+
+body {
+  background-color: #eeeeee; }
+
+.toggle_on_off {
+  background: none;
+  border: none;
+  cursor: pointer; }
+
+.toggle_on_off:hover {
+  font-size: 120%; }
+
+.toggle_on_off:focus {
+  outline: none;
+  background: none; }
+
+/*# sourceMappingURL=styles.css.map */

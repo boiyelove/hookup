@@ -1,0 +1,11 @@
+
+
+<ul class="collection with-header">
+    <li class="collection-header"><h4>First Names</h4></li>
+{% for user in blocked_users.html %}
+    <li class="collection-item"><div>{{ user }} <form method="post" action="">{% csrf_token %}<input stype="submit" value="unblock-{user.id}"/></form></div></li>
+ {% empty %}
+<h5>No Users here</h5>       
+{% endfor %}
+ 
+ </ul>   

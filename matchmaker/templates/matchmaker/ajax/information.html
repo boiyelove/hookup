@@ -1,0 +1,81 @@
+
+<div class="row close-row">
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-title purple white-text" style="padding:.5em 1em .5em 1em;">Information</div>
+         <div class="card-content">
+<div class="row">
+  <p class="purple-text">Basic</p>
+   {% if request.user.username == user.username %}<br>
+    {% include './basicinfoform.html' %}
+    {% else %}
+    <h5><label>Ethnicity</label> {{ user.basicinfo.ethnicity }}</h5>
+    <h5><label>Religion</label> {{ user.basicinfo.religion }}</h5>
+    <h5><label>Sign</label> {{ user.basicinfo.sign }}</h5>
+    <h5><label>Body type</label> {{ user.basicinfo.body_type }}</h5>
+    <br><br>
+
+    {% endif %}
+</div>
+<div class="row">
+<p class="purple-text">Status</p>
+   {% if request.user.username == user.username %}<br>
+{% include './statusinfoform.html' %}
+    {% else %}
+    <h5><label>Sexual Orientation</label> {{ user.statusinfo.sexual_orientation }}</h5>
+    <h5><label>Relationship_status</label> {{ user.statusinfo.relationship_status }}</h5>
+    <h5><label>Relationship_Type</label> {{ user.statusinfo.relationship_type }}</h5>
+    <br><br>
+
+    {% endif %}
+</div>
+<div class="row">
+<p class="purple-text">Personal</p>
+   {% if request.user.username == user.username %}<br>
+{% include './personalinfoform.html' %}
+    {% else %}
+    <h5><label>Children</label> {{ user.personalinfo.children }}</h5>
+    <h5><label>Pets</label> {{ user.personalinfo.pets }}</h5>
+    <h5><label>Car</label> {{ user.personalinfo.car }}</h5>
+    <h5><label>Home Ownership</label> {{ user.personalinfo.home_ownership }}</h5>
+    <br><br>
+    {% endif %}
+</div>
+<div class="row">
+<p class="purple-text">Professional</p>
+   {% if request.user.username == user.username %}<br>
+{% include './professionalinfoform.html' %}
+    {% else %}
+    <h5><label>Profession</label> {{ user.professionalinfo.profession }}</h5>
+    <h5><label>Industry</label> {{ user.professionalinfo.industry }}</h5>
+    <h5><label>Education</label> {{ user.professionalinfo.education }}</h5>
+    <br><br>
+    {% endif %}
+</div>
+<div class="row">
+<p class="purple-text">Habit</p>
+   {% if request.user.username == user.username %}<br>
+{% include './habitinfoform.html' %}
+    {% else %}
+    <h5><label>Smoking</label> {{ user.habitinfo.smoking }}</h5>
+    <h5><label>Drinking</label> {{ user.habitinfo.drinking }}</h5>
+    <h5><label>Drug</label> {{ user.habitinfo.drug }}</h5>
+    <h5><label>Diet</label> {{ user.habitinfo.diet }}</h5>
+    <br><br>
+    {% endif %}
+</div>
+         </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+

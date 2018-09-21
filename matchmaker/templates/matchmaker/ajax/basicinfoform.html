@@ -1,0 +1,7 @@
+{% load material_form %}
+
+<form class="col m6 s12 ajaxform" action="{% url 'matchmaker:view-profile' %}" method="post" id="basicinfo">
+  {% csrf_token %}
+{% form form=basicform %}{% endform %}<br>
+           <button class="btn waves-effect waves-light btn-small right purple" type="submit" value="basicinfo" name="submit">update</button>
+</form>

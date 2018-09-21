@@ -1,0 +1,17 @@
+.nav_icon {
+  margin-right: .4em;
+  font-size: 1.8em;
+  color: #827f7f; }
+
+a {
+  text-decoration: none;
+  color: #827f7f;
+  font-size: 0.8em; }
+
+body {
+  background-color: #eeeeee; }
+
+.close-row:after {
+  content: none; }
+
+/*# sourceMappingURL=styles.min.css.map */

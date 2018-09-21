@@ -1,0 +1,14 @@
+ {% extends './dashboard.html' %}
+{% block content %}
+<div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s2"><a href="#likes">My Likes</a></li>
+        <li class="tab col s2"><a href="#likedme">Liked Me</a></li>
+      </ul>
+    </div>
+    <div id="likes" class="col s12" data-href="?q=likes">{% include './ajax/user_grid.html' %}  </div>
+    <div id="likedme" class="col s12" data-href="?q=likedme">liked Me<br> </div>
+  </div>
+
+{% endblock %}

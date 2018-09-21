@@ -1,0 +1,76 @@
+ {% extends './dashboard.html' %}
+ {% block content %}
+ <div class="row">
+ 	<div class="col s12 m12">
+
+ 		<div class="card">
+ 			<div class="card-image">
+ 				<img src="http://localhost/sample-static/img/bg/bg1.jpg" height="190" width="970">
+ 			</div>
+ 			<div class="card-content" style="margin-bottom:0px; padding-bottom:0px;">
+ 				<div class="row">
+ 					<div class="col m4 s12" style="padding:0;">
+ 						<div class="col s3 center-align">
+ 							<img src="http://localhost/sample-static/img/member-3.png" class="circle" alt="Profile Banner" style="height:80px; width:auto;">
+ 						</div>
+ 						<div class="col s9">
+ 							<h5 style="margin-top:0px;margin-bottom:2px;">{{ user.first_name|title}} {{user.last_name|title}}</h5>
+ 							<p style="margin-top:0px;margin-bottom:0px;">{{ user.username }}<br>
+ 							{{ user.get_age }} years, {% if user.profile.city %} {{ user.profile.city|title }} {% else %} {{ user.profile.location }} {% endif  %}<br>
+ 							<small>Last seen 4 days ago</small></p>
+ 						</div>
+
+
+
+ 					</div>
+ 					<div class="col m3 s12 offset-m5" style="text-align:center;">
+ 						<div class="col s4">
+ 							<i class="material-icons center">people</i>{{ user.profile.views  }}
+ 							<h6 style="margin-top:2px;font-size:60%!important;">VISITORS</h6>
+ 						</div>
+ 						<div class="col s4">
+ 							<i class="material-icons center">favorite</i>{{ user.likes.likedUsers.count }}
+ 							<h6 style="margin-top:2px;font-size:60%!important;">LIKED ME</h6>
+ 						</div>
+ 						<div class="col s4 center">
+ 							<span class="material-icons">thumb_up</span> {{ user.likedusers.count }}
+ 							<h6 style="margin-top:2px;font-size:60%!important;">LIKE</h6>
+ 						</div>
+
+ 					</div>
+ 				</div>
+ 				<br>
+ 				<br>
+ 					<div class="row" style="margin:0px; padding:0px;">
+					    <div class="col s12" style="margin:0px; padding:0px;">
+					      <ul class="tabs" style="margin:0px; padding:0px;">
+					        <li class="tab col s2"><a class="active" href="#overview" class="red-text">Overview</a></li>
+					        <li class="tab col s2"><a href="#photo" class="blue-text">Photo</a></li>
+					        <li class="tab col s2"><a href="#interests" class="teal-text">Interests</a></li>
+					        <li class="tab col s2"><a href="#information" class="purple-text">Information</a></li>
+					        {% if request.user.username == user.username %}
+					        <li class="tab col s2"><a href="#notifications" class="teal-text">Notifications</a></li>
+					        {% endif %}
+					      </ul>
+					    </div>
+					  </div>
+ 			</div>
+ 		</div>
+ 	</div>
+ </div>
+
+ <div class="row">
+ 						    <div id="overview" class="col s12" data-href="{{ request.path }}?q=overview">
+ 						    	
+ 						    		{% include './ajax/overview.html' %}
+ 						    	
+ 						    </div>
+					    <div id="photo" class="col s12" data-href="{{ request.path }}?q=photo"></div>
+					    <div id="interests" class="col s12" data-href="{{ request.path }}?q=interests"></div>
+					    <div id="information" class="col s12" data-href="{{ request.path }}?q=information"><br>           </div>
+					    {% if request.user.username == user.username %}
+					    <div id="notifications" class="col s12" data-href="/notification-url"></div>
+					    {% endif %}
+ </div>
+ {% endblock %}
+
