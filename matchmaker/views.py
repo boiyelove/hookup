@@ -319,17 +319,28 @@ class MembershipListView(LoginRequiredMixin, ListView):
 	model = Membership
 	template_name = 'matchmaker/membership.html'
 	def get_template_names(self):
-		print('is request ajax', self.request.is_ajax())
+
 		if self.request.is_ajax():
 			self.template_name = "matchmaker/ajax/membership_list.html"
 		return super(MembershipListView, self).get_template_names()
-	# def get_context_data(self, **kwargs):
 
-	# 	return super().get_context_data(**kwargs)
 
 class NewsletterSubscription(TemplateView):
 	pass
+
 class BlockedUsers(LoginRequiredMixin, ListView):
-	pass
+	template_name = 'matchmaker/blocked_users.html'
+	context_object_name = 'blockedusers'
+
+	def get_template_names(self):
+		if self.request.is_ajax():
+			self.template_name = "matchmaker/ajax/blocked_users.html"
+		return super(BlockedUsers, self).get_template_names()
+
+
+	def get_queryset(self):
+		user = self.request.user 
+		return user.profile.blockedUsers
+
 class DeleteAccountView(LoginRequiredMixin, TemplateView):
 	pass
