@@ -343,4 +343,10 @@ class BlockedUsers(LoginRequiredMixin, ListView):
 		return user.profile.blockedUsers
 
 class DeleteAccountView(LoginRequiredMixin, TemplateView):
-	pass
+	template_name = 'matchmaker/deactivate_account.html'
+
+
+	def get_template_names(self):
+		if self.request.is_ajax():
+			self.template_name = "matchmaker/ajax/deactivate_account.html"
+		return super(DeleteAccountView, self).get_template_names()
