@@ -1,3 +1,4 @@
+from datetime import date
 from django import forms
 from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
@@ -40,7 +41,7 @@ class SignUpForm(UserCreationForm):
 		return email
 
 	def clean_username(self):
-		username = super().cleaned_data['username']
+		username = self.cleaned_data['username']
 		return username.lower().strip()
 
 	def clean_date_of_birth(self):
@@ -48,7 +49,7 @@ class SignUpForm(UserCreationForm):
 		today = date.today()
 		age =  today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 		if ((age > settings.MIN_AGE) and (age < settings.MAX_AGE)):
-			return age
+			return born
 		raise forms.ValidationError('user has to be 18 or above to signup')
 
 

@@ -17,3 +17,5 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 USE_CDN = False
+
+ALLOWED_HOSTS = ['*']
