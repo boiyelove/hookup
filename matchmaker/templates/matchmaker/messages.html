@@ -112,8 +112,8 @@
 </div>
 <div class="col m8" style="margin-left:0rem;padding-left:0rem;height:80%;">
   <div class="card-title teal white-text" style="padding:.3em 1em .5em 1em;margin:0;height:10%">User</div>
-  <div class="card-content grey lighten-2" style="margin-top:0rem;height:75%;overflow-y:scroll;padding-left:1.5rem;padding-right:2rem;background-color: #f4f8fa !important;"> 
-    <div class="row" style="padding:.0.1rem;" id="message-area">
+  <div class="card-content grey lighten-2"  id="message-area" style="margin-top:0rem;max-height:70%;overflow-y:scroll;padding-left:1.5rem;padding-right:2rem;background-color: #f4f8fa !important;"> 
+    <div class="row" style="padding:.0.1rem;">
       <div class="right" style="max-width:85%;">
         <div class="white" style="padding:.7rem;border-radius:1%;">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -142,12 +142,16 @@
     </div>
 
   </div>
-  <div class="card-action white" style="height:15%;">
+  <div class="card-action white" style="height:20%;">
     <div class="col m10 s10">
-      <textarea style="height:100%;" id="message-input"></textarea>
+
+
+           <textarea type="text" style="height:100%;padding:1rem;"  id="message-input"  placeholder="start typing..." ></textarea>
+
+
     </div>
     <div class="col m2 s2">
-      <button class="waves-effect btn">Send<i class="material-icons right">send</i></button>
+      <button class="waves-effect btn" id="message-send-btn">Send<i class="material-icons right">send</i></button>
     </div>
 
   </div>
@@ -155,6 +159,28 @@
 </div>
 </div>
 {% endblock %}
-
+     
 {% block extra_js %}
+$(document).ready(function(){
+  var objDiv = document.getElementById("message-area");
+  objDiv.scrollTop = objDiv.scrollHeight;
+  $("#message-area").focus();
+});
+$('#message-input').keypress(function(e){
+  var key = e.which;
+  if (key == '13'){
+    if (e.shiftKey){
+
+  }else{
+      e.preventDefault();
+      message = $('#message-input').val();  
+      newmessage =  '<div class="row" style="padding:.0.1rem;"><div class="right" style="max-width:85%;"><div class="white" style="padding:.7rem;border-radius:1%;">' + message + '</div><div class="right" style="margin-top:0.2rem;"><small>3 minutes ago</small></div></div></div>';
+      $('#message-area').append(newmessage);
+      e.currentTarget.value= ""; 
+      }
+  }
+  var objDiv = document.getElementById("message-area");
+  objDiv.scrollTop = objDiv.scrollHeight;
+});
+
 {% endblock %}
