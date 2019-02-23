@@ -1,152 +1,160 @@
  {% extends './dashboard.html' %}
+
+ {% block extra_style %}
+ <style type="text/css">
+ body{overflow-y:hidden;}
+</style>
+{% endblock %}
+
 {% block content %}
- <div class="row">
+<div class="row">
   <div class="card">
-     	<div class="col m3" style="margin-right:0rem;padding-right:0rem;height:100%;"> 
-     	<ul class="collection" style="height:100%;overflow-y:scroll;">
-     	
-        <li class="collection-item avatar">
-          <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-            <li class="collection-item avatar">
-          <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-            <li class="collection-item avatar">
-          <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-            <li class="collection-item avatar">
-          <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-            <li class="collection-item avatar">
-          <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-            <li class="collection-item avatar">
-          <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-            <li class="collection-item avatar">
-          <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-            <li class="collection-item avatar">
-          <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-            <li class="collection-item avatar">
-          <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-            <li class="collection-item avatar">
-          <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-            <li class="collection-item avatar">
-          <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-            <li class="collection-item avatar">
-          <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-      </ul>
-     	</div>
-     	<div class="col m8" style="margin-left:0rem;padding-left:0rem;height:100%;">
-        <div class="card-title teal white-text" style="padding:.5em 1em .5em 1em;margin: 0.5rem 0 0 0;height:10%">User</div>
-        <div class="card-content grey lighten-2" style="margin-top:0rem;height:75%;overflow-y:scroll;padding-left:0rem;"> 
-          <div class="row" style="padding:.0.1rem;">
-          <div class="right" style="max-width:85%;">
-            <div class="white" style="padding:.7rem;border-radius:1%;">
+    <div class="col m3" style="margin-right:0rem;padding-right:0rem;height:80%;"> 
+      <div style="height:10%; overflow:hidden; padding-left:1rem;vertical-align:center;background-color:white;"><h5 style="margin:.8rem 0rem .3rem 0rem">Messages</h5></div>
+      <ul class="collection" style="height:90%;overflow-y:scroll;margin-top:0rem!important">
+       <li class="collection-item avatar">
+        <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
+        <span class="title">Title</span>
+        <p>First Line <br>
+         Second Line
+       </p>
+       <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+     </li>
+     <li class="collection-item avatar">
+      <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
+      <span class="title">Title</span>
+      <p>First Line <br>
+       Second Line
+     </p>
+     <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+   </li>
+   <li class="collection-item avatar">
+    <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
+    <span class="title">Title</span>
+    <p>First Line <br>
+     Second Line
+   </p>
+   <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+ </li>
+ <li class="collection-item avatar">
+  <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
+  <span class="title">Title</span>
+  <p>First Line <br>
+   Second Line
+ </p>
+ <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+</li>
+<li class="collection-item avatar">
+  <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
+  <span class="title">Title</span>
+  <p>First Line <br>
+   Second Line
+ </p>
+ <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+</li>
+<li class="collection-item avatar">
+  <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
+  <span class="title">Title</span>
+  <p>First Line <br>
+   Second Line
+ </p>
+ <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+</li>
+<li class="collection-item avatar">
+  <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
+  <span class="title">Title</span>
+  <p>First Line <br>
+   Second Line
+ </p>
+ <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+</li>
+<li class="collection-item avatar">
+  <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
+  <span class="title">Title</span>
+  <p>First Line <br>
+   Second Line
+ </p>
+ <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+</li>
+<li class="collection-item avatar">
+  <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
+  <span class="title">Title</span>
+  <p>First Line <br>
+   Second Line
+ </p>
+ <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+</li>
+<li class="collection-item avatar">
+  <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
+  <span class="title">Title</span>
+  <p>First Line <br>
+   Second Line
+ </p>
+ <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+</li>
+<li class="collection-item avatar">
+  <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
+  <span class="title">Title</span>
+  <p>First Line <br>
+   Second Line
+ </p>
+ <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+</li>
+<li class="collection-item avatar">
+  <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
+  <span class="title">Title</span>
+  <p>First Line <br>
+   Second Line
+ </p>
+ <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
+</li>
+</ul>
+</div>
+<div class="col m8" style="margin-left:0rem;padding-left:0rem;height:80%;">
+  <div class="card-title teal white-text" style="padding:.3em 1em .5em 1em;margin:0;height:10%">User</div>
+  <div class="card-content grey lighten-2" style="margin-top:0rem;height:75%;overflow-y:scroll;padding-left:1.5rem;padding-right:2rem;background-color: #f4f8fa !important;"> 
+    <div class="row" style="padding:.0.1rem;" id="message-area">
+      <div class="right" style="max-width:85%;">
+        <div class="white" style="padding:.7rem;border-radius:1%;">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
           quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
           consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
           cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
           proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </div>
-          <div class="right" style="margin-top:0.2rem;"><small>3 minutes ago</small></div>
         </div>
+        <div class="right" style="margin-top:0.2rem;"><small>3 minutes ago</small></div>
       </div>
-      <div class="row" style="padding:.0.2rem;">
+    </div>
+    <div class="row" style="padding:.0.2rem;">
 
-          <div style="max-width:85%;">
-            <div class="blue lighten-5" style="padding:1rem;border-radius:1%;">
+      <div style="max-width:85%;">
+        <div class="blue lighten-5" style="padding:1rem;border-radius:1%;">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
           quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
           consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
           cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
           proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </div>
-          <div style="margin-top:0.2rem;"><small>3 minutes ago</small></div>
         </div>
+        <div style="margin-top:0.2rem;"><small>3 minutes ago</small></div>
       </div>
+    </div>
 
-        </div>
-         <div class="card-action white" style="height:15%;">
-          <div class="col m10 s10">
-            <textarea style="height:100%;"></textarea>
-          </div>
-          <div class="col m2 s2">
-            <button class="waves-effect btn">Send<i class="material-icons right">send</i></button>
-          </div>
-          
-        </div>
-     	</div>
- </div>
- </div>
- {% endblock %}
+  </div>
+  <div class="card-action white" style="height:15%;">
+    <div class="col m10 s10">
+      <textarea style="height:100%;" id="message-input"></textarea>
+    </div>
+    <div class="col m2 s2">
+      <button class="waves-effect btn">Send<i class="material-icons right">send</i></button>
+    </div>
 
-  
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}

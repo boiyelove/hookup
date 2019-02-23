@@ -29,6 +29,8 @@
 {% endif %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/styles.min.css' %}">
+{% block extra_style %}
+{% endblock %}
 <script type="text/javascript">
      $(document).ready(function(){
       M.AutoInit();
