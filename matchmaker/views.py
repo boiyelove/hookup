@@ -9,7 +9,7 @@ from django.views.generic.edit import FormView, UpdateView
 from django.template.loader import render_to_string
 from django.http import Http404, JsonResponse
 from .forms import BasicForm, BasicForm, StatusForm, PersonalForm, ProfessionalForm, HabitForm, UserSimpleForm, UserProfileForm, PhotoForm
-from .models import Interest, User
+from .models import Interest, User, Membership
 
 
 # Create your views here.
@@ -18,7 +18,7 @@ from .models import Interest, User
 # class AjaxFormResponseMixin:
 # 	def get_context_data(self, *args, **kwargs):	
 # 		context = super().get_context_data(**kwargs)
-# 		if self.request.is_ajax():
+# 		if self.request.is_ajax():	
 # 			context.update({'pk':pk,
 # 				'form_action': self.request.path,
 # 				})
@@ -316,7 +316,17 @@ class MessagesView(LoginRequiredMixin, TemplateView):
 
 
 class MembershipListView(LoginRequiredMixin, ListView):
-	pass
+	model = Membership
+	template_name = 'matchmaker/membership.html'
+	def get_template_names(self):
+		print('is request ajax', self.request.is_ajax())
+		if self.request.is_ajax():
+			self.template_name = "matchmaker/ajax/membership_list.html"
+		return super(MembershipListView, self).get_template_names()
+	# def get_context_data(self, **kwargs):
+
+	# 	return super().get_context_data(**kwargs)
+
 class NewsletterSubscription(TemplateView):
 	pass
 class BlockedUsers(LoginRequiredMixin, ListView):

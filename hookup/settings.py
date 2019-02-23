@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'model_utils',
+    'ordered_model',
     'matchmaker.apps.MatchmakerConfig',
     'allauth',
     'allauth.account',
@@ -159,7 +160,7 @@ ACCOUNT_FORMS = {
 MIN_AGE = 18
 MAX_AGE = 65
 
-
+DEFAULT_MEMBERSHIP = 'default'
 try:
     from .production import *
 except:

@@ -2,6 +2,7 @@ from datetime import date
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from model_utils.models import TimeStampedModel
+from ordered_model.models import OrderedModel
 from .utils import (GENDER_CHOICES,
 						LANGUAGE_CHOICES,
 						ETHINICITY_CHOICES,
@@ -39,9 +40,14 @@ class User(AbstractUser):
 	def get_matches(self):
 		return	User.objects.exclude(gender__iexact=self.gender)
 
-class Membership(TimeStampedModel):
+
+class Membership(OrderedModel, TimeStampedModel):
+	title = models.CharField(max_length=50)
 	messaging = models.PositiveIntegerField(default=5)
 	can_see_visitors = models.BooleanField(default=True)
+
+	def __str__(self):
+		return self.title
 
 class Category(TimeStampedModel):
 	name = models.CharField(max_length=60)

@@ -1,0 +1,33 @@
+{% load i18n %}
+{% load material_form %}
+   <div class="row close-row">
+   	{% for membership in membership_list %}
+    <div class="col s4 m3">
+		
+		      <div class="card">
+        <div class="card-title teal white-text center-align" style="padding:.5em 1em .5em 1em;">{{ membership }}</div>
+        <div class="card-content" style="padding:0em;"> 
+        	    <ul class="collection"style="margin:0em;">
+      <li class="collection-item">Messaging: {{membership.messaging}}</li>
+      <li class="collection-item">Visitors: {{membership.messaging}}</li>
+      <li class="collection-item">Alvin</li>
+      <li class="collection-item">Alvin</li>
+    </ul>
+        		
+				
+        </div>
+		<div class="card-action center-align">
+			<form class="ajaxform" action="{% url 'matchmaker:list-membership' %}" method="post">
+  				{% csrf_token %}
+				<input type="hidden" value="{{membership.id}}"/>
+		
+				  <button class="btn waves-effect waves-light" type="submit" name="action"><i class="material-icons left">cloud</i>Subscribe
+				  </button>
+			</form>
+		</div>
+      </div>
+    </div>
+    		{% empty %}
+		<h3>No membership</h3>
+		{% endfor %}
+  </div>
