@@ -43,10 +43,9 @@ INSTALLED_APPS = [
     # 'allauth.socialaccount.providers.google',
     # 'allauth.socialaccount.providers.facebook',
     'mailer',
-    'pinax.notifications',
-    'pinax.messages',
     'material',
-
+    'channels',
+    'chat',
 
 ]
 
@@ -75,14 +74,13 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 'django.template.context_processors.request',
-                'pinax.messages.context_processors.user_messages'
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'hookup.wsgi.application'
-
+ASGI_APPLICATION = 'hookup.routing.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
@@ -161,6 +159,17 @@ MIN_AGE = 18
 MAX_AGE = 65
 
 DEFAULT_MEMBERSHIP = 'default'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 6379)],
+            # "hosts": [os.environ.get('REDIS_URL', 'redis://localost:6379')],
+        },
+    },
+}
+
 try:
     from .production import *
 except:

@@ -8,7 +8,9 @@ from django.middleware.csrf import get_token
 from django.views.generic.edit import FormView, UpdateView
 from django.template.loader import render_to_string
 from django.http import Http404, JsonResponse
+from chat.models import Thread
 from .forms import BasicForm, BasicForm, StatusForm, PersonalForm, ProfessionalForm, HabitForm, UserSimpleForm, UserProfileForm, PhotoForm
+
 from .models import Interest, User, Membership
 
 
@@ -313,6 +315,22 @@ class InterestListView(ListView):
 
 class MessagesView(LoginRequiredMixin, TemplateView):
 	template_name = 'matchmaker/messages.html'
+
+	def get_context_data(self, **kwargs):
+		kwargs['init_csrf_token'] = get_token(self.request)
+		kwargs['threads'] = Thread.objects.by_user(self.request.user)
+		return super().get_context_data(**kwargs)
+		
+	def post(self, request, *args, **kwargs):
+		# 	Message.new_message(from_user=self.request.user, to_users=[user], subject=subject, content=content)
+		context = {}
+		# return render(request, self.template, context)
+			# 		'html': html,
+			# 'message': message,
+		return JsonResponse({
+			'token': get_token(request),
+			'reload': False
+			})
 
 
 class MembershipListView(LoginRequiredMixin, ListView):

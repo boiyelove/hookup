@@ -1,0 +1,27 @@
+{% for chat in thread.chatmessage_set.all %}
+
+{% ifequal chat.user user %}
+   <div class="row" style="padding:.0.1rem;">
+      <div class="right" style="max-width:85%;">
+        <div class="white" style="padding:.7rem;border-radius:1%;display:block;">
+         {{chat.message}}
+        </div>
+        <div class="right" style="margin-top:0.2rem;"><small>{{ chat.timestamp }}</small></div>
+      </div>
+    </div>
+
+{% else %}
+
+ 
+    <div class="row" style="padding:.0.2rem;">
+      <div style="max-width:85%;">
+        <div class="blue lighten-5" style="padding:1rem;border-radius:1%; display:inline-block;">
+		{{chat.message}}
+        </div>
+        <div style="margin-top:0.2rem;"><small>{{ chat.timestamp }}</small></div>
+      </div>
+    </div>
+
+{% endifequal %}
+
+{% endfor %}

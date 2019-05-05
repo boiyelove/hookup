@@ -3,6 +3,11 @@
  {% block extra_style %}
  <style type="text/css">
  body{overflow-y:hidden;}
+ .message-collection-item:hover{
+  background-color: #009688;
+  color: white;
+  cursor: hand;
+ }
 </style>
 {% endblock %}
 
@@ -10,147 +15,50 @@
 <div class="row">
   <div class="card">
     <div class="col m3" style="margin-right:0rem;padding-right:0rem;height:80%;"> 
-      <div style="height:10%; overflow:hidden; padding-left:1rem;vertical-align:center;background-color:white;"><h5 style="margin:.8rem 0rem .3rem 0rem">Messages</h5></div>
-      <ul class="collection" style="height:90%;overflow-y:scroll;margin-top:0rem!important">
-       <li class="collection-item avatar">
+      <div style="height:10%; overflow:hidden; padding-left:1rem;vertical-align:center;background-color:white;"><h5 style="margin:.8rem 0rem .3rem 0rem; color:#009688;">Messages</h5></div>
+      <ul id="message-collection" class="collection" style="height:90%;overflow-y:scroll;margin-top:0rem!important">
+        {% for thread in threads %}
+       <li id="messages_with_{% if user != thread.first %}{{ thread.first }}{% else %}{{ thread.second }}{% endif %}" class="collection-item avatar message-collection-item" data-username="{% if user != thread.first %}{{ thread.first }}{% else %}{{ thread.second }}{% endif %}" data-timestamp="{{thread.chatmessage_set.all.0.timestamp.timestamp}}">
         <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-        <span class="title">Title</span>
+        <span class="title">{% if user != thread.first %}{{ thread.first }}{% else %}{{ thread.second }}{% endif %}</span>
         <p>First Line <br>
          Second Line
        </p>
        <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
      </li>
-     <li class="collection-item avatar">
-      <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-      <span class="title">Title</span>
-      <p>First Line <br>
-       Second Line
-     </p>
-     <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-   </li>
-   <li class="collection-item avatar">
-    <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-    <span class="title">Title</span>
-    <p>First Line <br>
-     Second Line
-   </p>
-   <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
- </li>
- <li class="collection-item avatar">
-  <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-  <span class="title">Title</span>
-  <p>First Line <br>
-   Second Line
- </p>
- <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-</li>
-<li class="collection-item avatar">
-  <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-  <span class="title">Title</span>
-  <p>First Line <br>
-   Second Line
- </p>
- <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-</li>
-<li class="collection-item avatar">
-  <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-  <span class="title">Title</span>
-  <p>First Line <br>
-   Second Line
- </p>
- <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-</li>
-<li class="collection-item avatar">
-  <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-  <span class="title">Title</span>
-  <p>First Line <br>
-   Second Line
- </p>
- <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-</li>
-<li class="collection-item avatar">
-  <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-  <span class="title">Title</span>
-  <p>First Line <br>
-   Second Line
- </p>
- <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-</li>
-<li class="collection-item avatar">
-  <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-  <span class="title">Title</span>
-  <p>First Line <br>
-   Second Line
- </p>
- <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-</li>
-<li class="collection-item avatar">
-  <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-  <span class="title">Title</span>
-  <p>First Line <br>
-   Second Line
- </p>
- <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-</li>
-<li class="collection-item avatar">
-  <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-  <span class="title">Title</span>
-  <p>First Line <br>
-   Second Line
- </p>
- <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-</li>
-<li class="collection-item avatar">
-  <img src="http://localhost/sample-static/img/member-3.png" alt="" class="circle">
-  <span class="title">Title</span>
-  <p>First Line <br>
-   Second Line
- </p>
- <a href="#" class="secondary-content"><i class="material-icons">grade</i></a>
-</li>
+     {% endfor %}
+     
 </ul>
 </div>
+
+
 <div class="col m8" style="margin-left:0rem;padding-left:0rem;height:80%;">
-  <div class="card-title teal white-text" style="padding:.3em 1em .5em 1em;margin:0;height:10%">User</div>
-  <div class="card-content grey lighten-2"  id="message-area" style="margin-top:0rem;max-height:70%;overflow-y:scroll;padding-left:1.5rem;padding-right:2rem;background-color: #f4f8fa !important;"> 
+  <div class="card-title teal white-text" style="padding:.3em 1em 0.3em 1em;margin:0;height:10%"><span id="conversation-username" style="text-transform:capitalize;">User</span> <a href="#" class="white-text  right"><i class="material-icons">more_vert</i></a></div>
+  <div class="card-content grey lighten-2"  id="message-area" style="margin-top:0rem; height:70%;overflow-y:scroll;padding-left:1.5rem;padding-right:2rem;background-color: #f4f8fa !important;"> 
     <div class="row" style="padding:.0.1rem;">
       <div class="right" style="max-width:85%;">
         <div class="white" style="padding:.7rem;border-radius:1%;">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            When you send a message to a user, you will find it here
         </div>
         <div class="right" style="margin-top:0.2rem;"><small>3 minutes ago</small></div>
       </div>
     </div>
-    <div class="row" style="padding:.0.2rem;">
 
-      <div style="max-width:85%;">
-        <div class="blue lighten-5" style="padding:1rem;border-radius:1%;">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </div>
-        <div style="margin-top:0.2rem;"><small>3 minutes ago</small></div>
-      </div>
-    </div>
 
   </div>
   <div class="card-action white" style="height:20%;">
     <div class="col m10 s10">
 
-
+          <form id="message-form">
+            {% csrf_token %}
+            <input type='hidden' id='myUsername' value='{{ user }}' />
            <textarea type="text" style="height:100%;padding:1rem;"  id="message-input"  placeholder="start typing..." ></textarea>
+           </form>
 
 
     </div>
     <div class="col m2 s2">
+
       <button class="waves-effect btn" id="message-send-btn">Send<i class="material-icons right">send</i></button>
     </div>
 
@@ -160,27 +68,257 @@
 </div>
 {% endblock %}
      
+
 {% block extra_js %}
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.min.js"></script>
+<script type="text/javascript">
+var wscons_url = [];
+var wscons = [];
+
+// websocket scripts
+user = '{{user}}'
+var loc = window.location
+var formData = $('#message-form')
+var msgInput = $('#message-input')
+var chatHolder = $('#chat-items')
+var me = '{{ user }}'
+var currentView = '';
+var wsStart = 'ws://'
+if (loc.protocol == 'https:'){
+  wsStart = 'wss://'
+}
+var socket; 
+
+
+// var el = document.getElementById('message-collection')
+// var sortable = Sortable.create(el, {
+//     draggable: false,
+//     dataIdAttr: 'data-timestamp',
+//       store: {
+//           get: function () {
+//             var thisArr = []
+//             $.each($('.message-collection-item'), function(ele){
+//              var item =  $(ele).attr('data-timestamp');
+//              thisArr.push(item);
+//             });
+//               return thisArr;
+//           }
+//       }
+// })
+// var ordering = sortable.toArray();
+// sortable.sort(ordering.reverse());
+
+
 $(document).ready(function(){
   var objDiv = document.getElementById("message-area");
   objDiv.scrollTop = objDiv.scrollHeight;
   $("#message-area").focus();
-});
-$('#message-input').keypress(function(e){
-  var key = e.which;
-  if (key == '13'){
-    if (e.shiftKey){
+  $('.message-collection-item').first().click();
 
-  }else{
-      e.preventDefault();
-      message = $('#message-input').val();  
-      newmessage =  '<div class="row" style="padding:.0.1rem;"><div class="right" style="max-width:85%;"><div class="white" style="padding:.7rem;border-radius:1%;">' + message + '</div><div class="right" style="margin-top:0.2rem;"><small>3 minutes ago</small></div></div></div>';
-      $('#message-area').append(newmessage);
-      e.currentTarget.value= ""; 
+  $('#message-input').keypress(function(e){
+    var key = e.which;
+    if (key == '13'){
+          if (e.shiftKey){ }else{ $('#message-form').submit();}
+          console.log('sent in enter')
+    }
+
+  });
+
+  $('.message-collection-item').click(function(e){
+    other_user = e.currentTarget.dataset['username'];
+    currentView = other_user;
+    $('#conversation-username').html(other_user);
+    var endpoint = wsStart + loc.host + loc.pathname + other_user + '/'
+    var msgurl = loc.protocol + '//' +  loc.host + loc.pathname + other_user + '/'
+    console.log('ajax get messages url', msgurl)
+    $.ajax({url: msgurl, type: 'GET', success: function(e){
+        $("#message-area").html(e)
+        var objDiv = document.getElementById("message-area");
+        objDiv.scrollTop = objDiv.scrollHeight;
+        $("#message-area").focus();
       }
-  }
-  var objDiv = document.getElementById("message-area");
-  objDiv.scrollTop = objDiv.scrollHeight;
+    })
+
+    try {
+      socket.close()
+    }
+    catch(err){
+      console.log(console.log('no active socket connections', err))
+    }
+    finally{
+      socket = new WebSocket(endpoint)
+    }
+      
+      // if (wscons_url.includes(endpoint)){
+      //  index =  wscons_url.indexOf(endpoint)
+      //  socket = wscons[index]
+      // } else {
+      //   var socket = new ReconnectingWebSocket(endpoint)
+      //   wscons_url.push(endpoint)
+      //   wscons.push(socket)
+      // }
+      
+
+
+
+
+      socket.onmessage = function(e){
+      var chatDataMsg = JSON.parse(e.data);
+      console.log('Message recived', chatDataMsg)
+      time = getTime(chatDataMsg.time)
+      bubble_message_list(chatDataMsg);
+      currentView =  $('#conversation-username').html();
+      if ((currentView == chatDataMsg.other_user) || (currentView == chatDataMsg.username)){
+          if (chatDataMsg.username != user){
+            addOtherMessage(chatDataMsg.message, time);
+
+          var objDiv = document.getElementById("message-area");
+          objDiv.scrollTop = objDiv.scrollHeight;
+          $("#message-area").focus();
+            objDiv.scrollTop = objDiv.scrollHeight;
+          } else {
+            addMyMessage(chatDataMsg.message, time);
+             var objDiv = document.getElementById("message-area");
+            objDiv.scrollTop = objDiv.scrollHeight;
+          }
+        }
+
+
+        
+      }
+
+      socket.onopen = function(e){
+        formData.submit(function(event){
+          event.preventDefault()
+          var msgText =  $('#message-input').val();
+          var finalData ={
+            'message': msgText
+          }
+          socket.send(JSON.stringify(finalData))
+          formData[0].reset();
+         // $('#message-input').val('');
+          
+        })
+      }
+      socket.onerror =function(e){
+        console.log("error", e)
+      }
+      socket.onclose = function(e){
+        console.log("close", e)
+      }
+
+
+    });
+
+    function checkWsConnection(url){
+      // for (var i=0, wscons_url.length, i++){
+      //   var thisurl = wscons_url[i]
+      //   if (thisurl == url){
+      //     return true;
+      //   }
+      // }
+      // return false
+    }
+
+    function bubble_message_list(chatDataMsg){
+      console.log('timestamp is ', chatDataMsg.timestamp);
+      console.log('element is ', $('#messages_with_' + chatDataMsg.other_user));
+      if ($('#messages_with_' + chatDataMsg.other_user).get(0)){
+        $('#messages_with_' + chatDataMsg.other_user).attr('data-timestamp', chatDataMsg.timestamp)
+        $('#messages_with_' + chatDataMsg.other_user).prependTo("#message-collection");
+      }
+
+
+
+      // var firstItem =  $('.message-collection-item').first();
+      // if (firstItem.attr('data-username') == username){
+
+      // } else {
+        
+      // }
+
+
+
+    }
+
+    function getTime(time){
+      var d = new Date(time);
+      time = d.getDate() + '/' + (d.getMonth() + 1) +  '/'  +  d.getFullYear()  +  ' ' + d.getHours() + ':' + d.getMinutes()
+      return time
+    }
+
+    function addOtherMessage(message, time){ 
+          newmessage =  '<div class="row" style="padding:.0.2rem;"><div style="max-width:85%;"><div class="blue lighten-5" style="padding:1rem;border-radius:1%;display:inline-block;">' + message + '</div><div style="margin-top:0.2rem;"><small>' + time + '</small></div></div></div>';
+          $('#message-area').append(newmessage);
+          var objDiv = document.getElementById("message-area");
+          objDiv.scrollTop = objDiv.scrollHeight;
+    }
+    function addMyMessage(message, time){
+          newmessage =  '<div class="row" style="padding:.0.1rem;"><div class="right" style="max-width:85%;"><div class="white" style="padding:.7rem;border-radius:1%;display:inline-block;">' + message + '</div><div style="margin-top:0.2rem;text-align:right"><small>' + time + '</small></div></div></div>';
+          $('#message-area').append(newmessage);
+          var objDiv = document.getElementById("message-area");
+          objDiv.scrollTop = objDiv.scrollHeight;
+    }
+
+
+
+
+
 });
+
+
+
 
 {% endblock %}
+
+
+
+
+function addMessage(e){
+      message = $('#message-input').val();  
+      newmessage =  '<div class="row" style="padding:.0.1rem;"><div class="right" style="max-width:85%;"><div class="white" style="padding:.7rem;border-radius:1%;white-space: pre-wrap;">' + message + '</div><div class="right" style="margin-top:0.2rem;"><small>3 minutes ago</small></div></div></div>';
+      $('#message-area').append(newmessage);
+      e.currentTarget.value= ""; 
+      var objDiv = document.getElementById("message-area");
+      objDiv.scrollTop = objDiv.scrollHeight;
+}
+
+
+function sendMessage(e){
+  e.preventDefault();
+  var form = $('#message-form').serialize();
+  $.ajax({
+  type: "POST",
+    url: '.',
+    data: form,
+    dataType: 'html',
+    success: function(data){
+      data = JSON.parse(data);
+      addMessage(e)
+      console.log(data);
+      var csrf = $('#message-form').find("input[name='csrfmiddlewaretoken']");
+      csrf = csrf[0];
+      $(csrf).val(data.token)
+
+
+     // handle(data);
+        }
+    
+    });
+}
+
+function getNewMessages(){
+  $.ajax({
+  url: '.',
+  success: function(data){
+  data = JSON.parse(data);
+  new_messages = data.new_messages;
+  for (i = 0; i < data.new_messages.length;){
+        new_messages.content;
+        new_messages.created_on;
+
+                    }
+      }
+})
+}

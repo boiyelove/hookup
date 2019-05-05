@@ -21,6 +21,6 @@ urlpatterns = [
     path('adminx/', admin.site.urls),
     path('login/', LoginView.as_view(), name='login'),
     path('', include('allauth.urls')),
-    path('messages/', include('pinax.messages.urls', namespace='pinax_messages')),
+    path('messages/', include('chat.urls')),
     path('', include('matchmaker.urls', namespace='matchmaker')),
 ]
