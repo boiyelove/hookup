@@ -1,4 +1,5 @@
  {% extends './dashboard.html' %}
+ {% load staticfiles %}
 
  {% block extra_style %}
  <style type="text/css">
@@ -73,24 +74,6 @@
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.min.js"></script>
 <script type="text/javascript">
-var wscons_url = [];
-var wscons = [];
-
-// websocket scripts
-user = '{{user}}'
-var loc = window.location
-var formData = $('#message-form')
-var msgInput = $('#message-input')
-var chatHolder = $('#chat-items')
-var me = '{{ user }}'
-var currentView = '';
-var wsStart = 'ws://'
-if (loc.protocol == 'https:'){
-  wsStart = 'wss://'
-}
-var socket; 
-
-
 // var el = document.getElementById('message-collection')
 // var sortable = Sortable.create(el, {
 //     draggable: false,
@@ -110,17 +93,44 @@ var socket;
 // sortable.sort(ordering.reverse());
 
 
+
+// function checkWsConnection(url){
+  // for (var i=0, wscons_url.length, i++){
+  //   var thisurl = wscons_url[i]
+  //   if (thisurl == url){
+  //     return true;
+  //   }
+  // }
+  // return false
+// }
 $(document).ready(function(){
-  var objDiv = document.getElementById("message-area");
-  objDiv.scrollTop = objDiv.scrollHeight;
-  $("#message-area").focus();
-  $('.message-collection-item').first().click();
+  var wscons_url = [];
+  var wscons = [];
+
+  // websocket scripts
+  user = '{{user}}'
+  var loc = window.location
+  var formData = $('#message-form')
+  var msgInput = $('#message-input')
+  var chatHolder = $('#chat-items')
+  var me = '{{ user }}'
+  var currentView = '';
+  var wsStart = 'ws://'
+  if (loc.protocol == 'https:'){
+    wsStart = 'wss://'
+  }
+
+  var audio = new Audio("{% static 'sound/definite.mp3' %}")
+  var socket; 
 
   $('#message-input').keypress(function(e){
     var key = e.which;
     if (key == '13'){
-          if (e.shiftKey){ }else{ $('#message-form').submit();}
-          console.log('sent in enter')
+        e.preventDefault();
+        if (e.shiftKey){ }else{ 
+          $('#message-form').submit();
+          $('#message-input').html("");
+        }
     }
 
   });
@@ -147,7 +157,7 @@ $(document).ready(function(){
       console.log(console.log('no active socket connections', err))
     }
     finally{
-      socket = new WebSocket(endpoint)
+      socket = new ReconnectingWebSocket(endpoint)
     }
       
       // if (wscons_url.includes(endpoint)){
@@ -165,24 +175,39 @@ $(document).ready(function(){
 
       socket.onmessage = function(e){
       var chatDataMsg = JSON.parse(e.data);
-      console.log('Message recived', chatDataMsg)
+      console.log('Message received', chatDataMsg)
       time = getTime(chatDataMsg.time)
       bubble_message_list(chatDataMsg);
       currentView =  $('#conversation-username').html();
       if ((currentView == chatDataMsg.other_user) || (currentView == chatDataMsg.username)){
           if (chatDataMsg.username != user){
             addOtherMessage(chatDataMsg.message, time);
-
-          var objDiv = document.getElementById("message-area");
-          objDiv.scrollTop = objDiv.scrollHeight;
-          $("#message-area").focus();
+            var objDiv = document.getElementById("message-area");
             objDiv.scrollTop = objDiv.scrollHeight;
+            objDiv.scrollTop = objDiv.scrollHeight;
+            $("#message-area").focus();
+            audio.play();
           } else {
             addMyMessage(chatDataMsg.message, time);
              var objDiv = document.getElementById("message-area");
             objDiv.scrollTop = objDiv.scrollHeight;
+            $("#message-area").focus();
           }
-        }
+        } 
+        // else {
+        //     html = chatDataMsg.message
+        //     if (chatDataMsg.username == user){
+        //       htnl = chatDataMsg.other_user + " - " + html
+        //     } else {
+        //       htnl = chatDataMsg.username + " - " + html
+        //     }
+        //     if (html.length > 30){
+        //       html = $.trim(html).substring(0,29)
+        //       html += '...'
+        //     }
+        //     M.toast({html: html, classes:'blue'});
+          
+        // }
 
 
         
@@ -211,15 +236,11 @@ $(document).ready(function(){
 
     });
 
-    function checkWsConnection(url){
-      // for (var i=0, wscons_url.length, i++){
-      //   var thisurl = wscons_url[i]
-      //   if (thisurl == url){
-      //     return true;
-      //   }
-      // }
-      // return false
-    }
+    var objDiv = document.getElementById("message-area");
+    objDiv.scrollTop = objDiv.scrollHeight;
+    $("#message-area").focus();
+    $('.message-collection-item').first().click();
+
 
     function bubble_message_list(chatDataMsg){
       console.log('timestamp is ', chatDataMsg.timestamp);

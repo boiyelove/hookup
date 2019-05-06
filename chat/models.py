@@ -1,8 +1,15 @@
+import json
 from django.db import models
 
 from django.conf import settings
 from django.db import models
 from django.db.models import Q
+
+
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
 
 
 class ThreadManager(models.Manager):
@@ -75,9 +82,36 @@ class ChatMessage(models.Model):
     message     = models.TextField()
     timestamp   = models.DateTimeField(auto_now_add=True)
 
+    def get_otheruser(self):
+        if self.user == self.thread.first:
+            return self.thread.second
+        else:
+            return self.thread.first
+
 
 class NotificationStream(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def get_channelname(self):
-        return f"thread_{self.id}"
+        return f"{self.user.username}_streams"
+
+
+
+
+@receiver(post_save, sender=ChatMessage)
+def create_notification(sender, instance, created, **kwargs):
+    if created:
+        other_user = instance.get_otheruser()
+        channel_layer = get_channel_layer()
+        data = {"notification_type": "new message",
+        "sender": "system",
+        "notification_text": f"{instance.user.username}: {instance.message}" }
+        async_to_sync(channel_layer.group_send)(
+            other_user.notificationstream.get_channelname(),
+            {
+                "type": "notification.message",
+                "text": json.dumps(data)
+            })
+
+
+        

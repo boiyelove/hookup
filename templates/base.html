@@ -157,6 +157,7 @@
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
     </div>
   </div>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.min.js"></script>
   <script type="text/javascript">     
         $('.toggle_on_off').bind('click', function(e){
         token_input = $(this).find("input[name='csrfmiddlewaretoken']");
@@ -182,6 +183,38 @@
 
       });
 
+    {% if request.user.is_authenticated %}
+  var loc = window.location
+  var currentView = '';
+  var wsStart = 'ws://'
+  if (loc.protocol == 'https:'){
+    wsStart = 'wss://'
+  }
+
+  var notifications_endpoint = wsStart + loc.host + '/notifications/'
+  var notifications_socket = new ReconnectingWebSocket(notifications_endpoint)
+
+  notifications_socket.onopen = function(e){
+    console.log('connected', e)
+    M.toast({html: "Connected", classes:'Teal'});
+  }
+
+  notifications_socket.onmessage = function(e){
+    console.log('notification_received', e)
+    data = JSON.parse(e.data)
+    console.log('data is', data)
+   M.toast({html: data.notification_text, classes:'blue'});
+  }
+  notifications_socket.onclose = function(e){
+    console.log('disconnected', e)
+    M.toast({html: "Disconnected", classes:'red'});
+  }
+
+
+
+
+
+    {% endif %}
 
   </script>
   <script type="text/javascript">    
