@@ -15,4 +15,8 @@
 - Profile
 	- Photo upload
 	- Interests update
+
+- Settings
+	- membership
+	- newsletter
 	

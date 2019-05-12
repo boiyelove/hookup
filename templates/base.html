@@ -204,6 +204,12 @@
     data = JSON.parse(e.data)
     console.log('data is', data)
    M.toast({html: data.notification_text, classes:'blue'});
+   // if (window.location == '/messages/'){
+   //    get message sender _otheruser
+   //    check if user is in message_list
+   //    if yes, bubble message up 
+   //    if no, create message item and prepend it
+   //  }
   }
   notifications_socket.onclose = function(e){
     console.log('disconnected', e)
