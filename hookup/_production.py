@@ -7,12 +7,6 @@ ALLOWED_HOSTS = ['hookup.boiyelove.com']
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_FROM_EMAIL = 'notifications@boiyelove.com'
-EMAIL_HOST = ''
-EMAIL_HOST_PASSWORD = ''
-EMAIL_HOST_USER = ''
-EMAIL_PORT = ''
-SERVER_EMAIL = ''
-
 
 PROD = True
 
