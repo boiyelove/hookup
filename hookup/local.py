@@ -11,7 +11,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'pstatic'),]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '+!@em2u9tgzz90ph^_$b_^@xpz#xz=9o4&h7_xc$j&$7(2lyz1'
+# SECRET_KEY = ''
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
